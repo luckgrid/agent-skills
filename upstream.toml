@@ -29,3 +29,9 @@ repo = "obra-superpowers"
 path = "skills/receiving-code-review"
 skill_sha256 = "091df1629510af1b92fc4abd6f96732ebedb4cb2c0f3457e8f2740b0504a2438"
 tree_sha256 = "9f9b9bf6d2d5c93c20c0fbda1b43b0c667ee7f628f7aaaa94bbc100bb9dcfd95"
+
+[skill.systematic-debugging]
+repo = "obra-superpowers"
+path = "skills/systematic-debugging"
+skill_sha256 = "51c6435d98c83c42c96ba7c35725a0b2c376cd487fb1a4e6bd0ddbe7e33ef202"
+tree_sha256 = "6c632fd9c5189db7f1fb08afb1f5172f932f1c49fca2e8b9477e611632fc8d01"
