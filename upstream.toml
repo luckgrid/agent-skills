@@ -61,3 +61,9 @@ repo = "mattpocock-skills"
 path = "skills/productivity/grilling"
 skill_sha256 = "a146842ed93ca43d833550fa9adf02e58cb63c83fea9d4b4522995b82242d4e2"
 tree_sha256 = "f051b560a2efc6885696401f41575e3814eaab4078190dca2dfa656b7fda9ffd"
+
+[skill.grill-me]
+repo = "mattpocock-skills"
+path = "skills/productivity/grill-me"
+skill_sha256 = "caaf8b8de1684f96e26b28f3c29189db5c89cce4b73e1c93d86164f66ef88637"
+tree_sha256 = "8d501635f6935280c1e493a7551658038fef32a346fb3a4acd21a727ceee3b64"
