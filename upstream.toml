@@ -9,3 +9,17 @@
 #
 # To update a skill: review the new upstream commit, move the submodule to it,
 # then update `commit`, `reviewed` and each skill's digests in the same commit.
+
+[repo.obra-superpowers]
+url = "https://github.com/obra/superpowers"
+commit = "22f0b463e7a5e579904dd6211a520321035526f7"
+tag = "v7.0.2"
+licence = "MIT"
+licence_file = "LICENSE"
+reviewed = "2026-11-10"
+
+[skill.verification-before-completion]
+repo = "obra-superpowers"
+path = "skills/verification-before-completion"
+skill_sha256 = "2befe7fc55bcadaa3d97dd9e8efeb633d2561c0ebe74c5a8b17c4d9e7e4520b3"
+tree_sha256 = "29d4bd654fdc57679501bf73b2821abf4ce035c536054a3e8e90ed7ed38644c7"

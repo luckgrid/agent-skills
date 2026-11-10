@@ -1,0 +1,4 @@
+[submodule "upstream/obra-superpowers"]
+	path = upstream/obra-superpowers
+	url = https://github.com/obra/superpowers
+	shallow = true
