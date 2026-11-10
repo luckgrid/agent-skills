@@ -11,6 +11,4 @@
 
 `scripts/check.sh` fails if `SKILL.md` no longer matches the SHA-256 above. To update, copy the new `herdr --skill` output, then update the version, hash, tag and commit here in the same commit.
 
-## Pending
-
-- herdr's `LICENSE` file is not here yet: it could not be fetched from the guest. The owner adds it as `skills/herdr/LICENSE` from the Mac.
+herdr's LICENSE is `skills/herdr/LICENSE`, added from the Mac from tag v0.9.5, SHA-256 c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4 (the Apache-2.0 text without its leading blank line).

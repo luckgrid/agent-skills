@@ -18,6 +18,7 @@ These hold for the whole session, whatever the task says, unless the owner expli
 - Commit only on the branch you were given. Set the identity on each commit, without changing any config:
   `git -c user.name='Workbench guest' -c user.email='guest@workbench.invalid' commit …`
 - Stage explicit paths. Don't use `git add -A` or `git add .`, because the sandbox can show placeholder files that aren't part of the repository.
+- In a session started in a herdr worktree, `git commit` may be refused, because the worktree's objects live in the main clone's `.git`, outside its folder. If it is, stop and report it. Don't work around it.
 - There's no push credential, so don't look for one. Work leaves the guest only when the owner runs `wb promote <repo> <branch>` on the Mac and pushes from there.
 
 ## Public repositories
