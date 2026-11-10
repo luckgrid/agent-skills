@@ -18,6 +18,13 @@ licence = "MIT"
 licence_file = "LICENSE"
 reviewed = "2026-11-10"
 
+[repo.trailofbits-skills]
+url = "https://github.com/trailofbits/skills"
+commit = "e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff"
+licence = "CC-BY-SA-4.0"
+licence_file = "LICENSE"
+reviewed = "2026-11-10"
+
 [skill.verification-before-completion]
 repo = "obra-superpowers"
 path = "skills/verification-before-completion"
@@ -35,3 +42,9 @@ repo = "obra-superpowers"
 path = "skills/systematic-debugging"
 skill_sha256 = "51c6435d98c83c42c96ba7c35725a0b2c376cd487fb1a4e6bd0ddbe7e33ef202"
 tree_sha256 = "6c632fd9c5189db7f1fb08afb1f5172f932f1c49fca2e8b9477e611632fc8d01"
+
+[skill.differential-review]
+repo = "trailofbits-skills"
+path = "plugins/differential-review/skills/differential-review"
+skill_sha256 = "f9af6a8193fc1a9f8ca3c54bb8d19095a5f20c9472ca6d014488bbde50b67da0"
+tree_sha256 = "ae612a039510a790becd411561075984bdc51841ba3d4b9dd72c351148aa0ddb"

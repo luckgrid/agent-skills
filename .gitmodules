@@ -2,3 +2,7 @@
 	path = upstream/obra-superpowers
 	url = https://github.com/obra/superpowers
 	shallow = true
+[submodule "upstream/trailofbits-skills"]
+	path = upstream/trailofbits-skills
+	url = https://github.com/trailofbits/skills
+	shallow = true
