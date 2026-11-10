@@ -25,6 +25,13 @@ licence = "CC-BY-SA-4.0"
 licence_file = "LICENSE"
 reviewed = "2026-11-10"
 
+[repo.mattpocock-skills]
+url = "https://github.com/mattpocock/skills"
+commit = "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+licence = "MIT"
+licence_file = "LICENSE"
+reviewed = "2026-11-10"
+
 [skill.verification-before-completion]
 repo = "obra-superpowers"
 path = "skills/verification-before-completion"
@@ -48,3 +55,9 @@ repo = "trailofbits-skills"
 path = "plugins/differential-review/skills/differential-review"
 skill_sha256 = "f9af6a8193fc1a9f8ca3c54bb8d19095a5f20c9472ca6d014488bbde50b67da0"
 tree_sha256 = "ae612a039510a790becd411561075984bdc51841ba3d4b9dd72c351148aa0ddb"
+
+[skill.grilling]
+repo = "mattpocock-skills"
+path = "skills/productivity/grilling"
+skill_sha256 = "a146842ed93ca43d833550fa9adf02e58cb63c83fea9d4b4522995b82242d4e2"
+tree_sha256 = "f051b560a2efc6885696401f41575e3814eaab4078190dca2dfa656b7fda9ffd"
