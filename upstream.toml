@@ -1,0 +1,11 @@
+# Upstream skills, linked rather than copied.
+#
+# Each [repo.<id>] is a Git submodule at upstream/<id>, pinned at `commit`.
+# Each [skill.<name>] is a relative symlink skills/<name> -> ../upstream/<repo>/<path>.
+# scripts/check.sh verifies every entry: the symlink target, that the submodule
+# is recorded and checked out at `commit`, the SKILL.md SHA-256, the folder digest
+# (sorted "path NUL sha256" lines of every file), the licence file, and the
+# front matter. Format: [table] lines and key = "string" lines only.
+#
+# To update a skill: review the new upstream commit, move the submodule to it,
+# then update `commit`, `reviewed` and each skill's digests in the same commit.
