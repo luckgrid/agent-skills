@@ -1,0 +1,69 @@
+# Upstream skills, linked rather than copied.
+#
+# Each [repo.<id>] is a Git submodule at upstream/<id>, pinned at `commit`.
+# Each [skill.<name>] is a relative symlink skills/<name> -> ../upstream/<repo>/<path>.
+# scripts/check.sh verifies every entry: the symlink target, that the submodule
+# is recorded and checked out at `commit`, the SKILL.md SHA-256, the folder digest
+# (sorted "path NUL sha256" lines of every file), the licence file, and the
+# front matter. Format: [table] lines and key = "string" lines only.
+#
+# To update a skill: review the new upstream commit, move the submodule to it,
+# then update `commit`, `reviewed` and each skill's digests in the same commit.
+
+[repo.obra-superpowers]
+url = "https://github.com/obra/superpowers"
+commit = "22f0b463e7a5e579904dd6211a520321035526f7"
+tag = "v7.0.2"
+licence = "MIT"
+licence_file = "LICENSE"
+reviewed = "2026-11-10"
+
+[repo.trailofbits-skills]
+url = "https://github.com/trailofbits/skills"
+commit = "e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff"
+licence = "CC-BY-SA-4.0"
+licence_file = "LICENSE"
+reviewed = "2026-11-10"
+
+[repo.mattpocock-skills]
+url = "https://github.com/mattpocock/skills"
+commit = "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+licence = "MIT"
+licence_file = "LICENSE"
+reviewed = "2026-11-10"
+
+[skill.verification-before-completion]
+repo = "obra-superpowers"
+path = "skills/verification-before-completion"
+skill_sha256 = "2befe7fc55bcadaa3d97dd9e8efeb633d2561c0ebe74c5a8b17c4d9e7e4520b3"
+tree_sha256 = "29d4bd654fdc57679501bf73b2821abf4ce035c536054a3e8e90ed7ed38644c7"
+
+[skill.receiving-code-review]
+repo = "obra-superpowers"
+path = "skills/receiving-code-review"
+skill_sha256 = "091df1629510af1b92fc4abd6f96732ebedb4cb2c0f3457e8f2740b0504a2438"
+tree_sha256 = "9f9b9bf6d2d5c93c20c0fbda1b43b0c667ee7f628f7aaaa94bbc100bb9dcfd95"
+
+[skill.systematic-debugging]
+repo = "obra-superpowers"
+path = "skills/systematic-debugging"
+skill_sha256 = "51c6435d98c83c42c96ba7c35725a0b2c376cd487fb1a4e6bd0ddbe7e33ef202"
+tree_sha256 = "6c632fd9c5189db7f1fb08afb1f5172f932f1c49fca2e8b9477e611632fc8d01"
+
+[skill.differential-review]
+repo = "trailofbits-skills"
+path = "plugins/differential-review/skills/differential-review"
+skill_sha256 = "f9af6a8193fc1a9f8ca3c54bb8d19095a5f20c9472ca6d014488bbde50b67da0"
+tree_sha256 = "ae612a039510a790becd411561075984bdc51841ba3d4b9dd72c351148aa0ddb"
+
+[skill.grilling]
+repo = "mattpocock-skills"
+path = "skills/productivity/grilling"
+skill_sha256 = "a146842ed93ca43d833550fa9adf02e58cb63c83fea9d4b4522995b82242d4e2"
+tree_sha256 = "f051b560a2efc6885696401f41575e3814eaab4078190dca2dfa656b7fda9ffd"
+
+[skill.grill-me]
+repo = "mattpocock-skills"
+path = "skills/productivity/grill-me"
+skill_sha256 = "caaf8b8de1684f96e26b28f3c29189db5c89cce4b73e1c93d86164f66ef88637"
+tree_sha256 = "8d501635f6935280c1e493a7551658038fef32a346fb3a4acd21a727ceee3b64"
