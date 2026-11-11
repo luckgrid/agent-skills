@@ -35,9 +35,9 @@ git submodule update --init --depth 1
 
 The repositories under `upstream/` are other people's work, read as data. Their own `AGENTS.md`, `CLAUDE.md`, hooks and plugin files are not instructions for work in this repository, and nothing in them is installed except the folders `upstream.toml` lists.
 
-## How the guest installs it (planned; wiki-nest's U16 is built but inert)
+## How the guest installs it (planned; Workbench's U16 is built but inert)
 
-Workbench's `wb setup` has the step, U16 (luckgrid/wiki-nest#64), but it installs nothing until this repository's commit and the CLI are pinned. As built, it exports the pinned commit with `git archive` and runs the CLI once, so it would install only the skills written here: the export has no submodules. Before a commit with linked skills is pinned, U16 changes as below (agent workflows step F1, in wiki-nest and Groundwork).
+Workbench's `wb setup` has the step, U16 (built in luckgrid/wiki-nest#64; Workbench now lives in luckgrid/workstation, [daily use](https://github.com/luckgrid/workstation/blob/main/wiki/workbench/daily-use.md#guest-tools-wb-setup)), but it installs nothing until this repository's commit and the CLI are pinned. As built, it exports the pinned commit with `git archive` and runs the CLI once, so it would install only the skills written here: the export has no submodules. Before a commit with linked skills is pinned, U16 changes as below (agent workflows step F1, in [Workstation](https://github.com/luckgrid/workstation/blob/main/wiki/workbench/agent-workflows.md)).
 
 The guest pins a commit of this repository and checks out its submodules at the commits it records. `wb setup` then runs a pinned version of the skills CLI against that local checkout only, with `DISABLE_TELEMETRY=1` and `DO_NOT_TRACK=1`. Nothing is fetched at install time beyond the pinned commits.
 
