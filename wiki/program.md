@@ -5,7 +5,7 @@ title: Roadmap
 summary: "The refactor to fully custom skill modules (owner, 2026-11-12): M0 removes the linked upstream skills and sets the module layout; then workbench, council, multiplex, wiki, grill, design-system, a site-system project skill in that repository, frugal and triage, each written in Luckgrid's own words from a reference list of reviewed skills. The earlier items P1 to P3 are folded into the modules."
 status: active
 created: 2026-11-12
-updated: 2026-11-12  # third round (owner): the open questions answered, the order, triage; before that, second round (owner): council, multiplex, design-system and site-system; before that, the custom-modules refactor (owner, 2026-11-12); before that, P1 to P3 from the wiki's first version
+updated: 2026-11-12  # agents monorepo: the owner's decisions after the independent review, items AG1 to AG3 after M2, M0 unchanged; before that, third round (owner): the open questions answered, the order, triage; before that, second round (owner): council, multiplex, design-system and site-system; before that, the custom-modules refactor (owner, 2026-11-12); before that, P1 to P3 from the wiki's first version
 related: [AS-ADR-0001, AS-ARCH-AGENTS-WORKSPACE, AS-STATE, AS-RES-SKILL-REFERENCES, AS-REC-2026-11-12-SKILL-MODULES, GW-ADR-0014, GW-ARCH-WORKBENCH-AGENT-WORKFLOWS, AS-ARCH-SKILL-SOURCES, AS-ARCH-GUEST-INSTALL]
 ---
 
@@ -13,11 +13,16 @@ related: [AS-ADR-0001, AS-ARCH-AGENTS-WORKSPACE, AS-STATE, AS-RES-SKILL-REFERENC
 
 Where things stand is in [STATE](records/STATE.md); this page doesn't restate it. Nothing here reaches the guest until Workbench's step F1 pins a commit of this repository ([guest install](architecture/guest-install.md)). The research and the owner's choices behind this plan are in the [skill modules record](records/2026-11-12-skill-modules.md); the skills each module learns from are listed in [skill references](resources/skill-references.md).
 
-## Agents monorepo foundation (owner direction, 2026-11-12)
+## Agents monorepo (owner, 2026-11-12)
 
-The [decision and reasons](records/2026-11-12-agents-monorepo-decision.md) expand the workspace to reusable agent configurations, skills and tools. The [workspace design](architecture/agents-workspace.md) proposes packages and proof gates; the [knowledge lineage](resources/agents-knowledge-lineage.md) consolidates older sources under Workstation's current profile and authority direction. That expansion does not change the module IDs, the site-system-first priority or private project placement below.
+The owner's decisions are in [AS-ADR-0001](records/decisions/0001-agents-monorepo.md): an agents monorepo renamed `luckgrid/agents`, skills as a package, public config defaults here with a private overlay, Rust after M2, and Claude Code and Codex for the first shared-config proof. The proposed layout and proof gates are in the [workspace design](architecture/agents-workspace.md); the [knowledge lineage](resources/agents-knowledge-lineage.md) records the older sources. None of it changes the module IDs, the order below or M0: skills stay at `skills/`.
 
-Extend M0 with the smallest useful content package layout and Moon checks, then prove the exact local export with Workbench's pinned installer before any skill-path or pin change. Demonstrate one shared non-secret configuration through two native harness mappings before expanding adapters. Cargo remains the Rust build authority; plain skill consumers need no Rust. Crate/binary names, profile schemas and a repository rename remain proposals. No empty package scaffold, WfOS runtime, Ontarch registry, Workflow Factory import or migration is required by this documentation step. Workstation W4 remains the separate proof for its proposed private sources and secret handling.
+The agents items come after the modules they would otherwise delay:
+
+- **Rename:** after AS-ADR-0001's PR merges, the owner renames the repository; a Workstation PR updates its references ([step 2](architecture/agents-workspace.md#steps-and-proof-gates)).
+- **AG1, after M2:** a Rust validator replaces `check.sh`, with Moon and its pins and the admission note that extends GW-ADR-0016 here. It can run alongside M3 to M9.
+- **AG2, after AG1:** shared user-level instructions for Claude Code and Codex, proved in the guest.
+- **AG3, after AG2:** settings and a sandbox baseline with the agent-config overlay, the stricter value winning for policy keys; needs GW-ADR-0011's stage C amendment and gate A2 in Workstation.
 
 ## The direction (owner, 2026-11-12)
 
@@ -52,7 +57,7 @@ Module numbers are IDs and don't change; the build order is:
 
 1. **M7 `site-system`**, now. It is a project skill in the site-system repository, so agents there get it once it merges, without waiting for Workbench's install step, and it helps the site prototypes due this month. Until M6 exists, it carries `design-system`'s rules for consuming a release.
 2. **M0**, the module foundation.
-3. **M1 `workbench`**, then **M2 `council`**: what Workbench's F1 needs.
+3. **M1 `workbench`**, then **M2 `council`**: what Workbench's F1 needs. **AG1** follows M2 and can run alongside what comes next ([agents items](#agents-monorepo-owner-2026-11-12)).
 4. **M3 `multiplex`**, **M4 `wiki`**, **M5 `grill`**.
 5. **M6 `design-system`**; M7 then points to it instead of carrying its rules.
 6. **M8 `frugal`**, **M9 `triage`**.
@@ -75,9 +80,8 @@ skills/<module>/
 
 ## M0: the module foundation
 
-One PR, before any module in this repository (the private site-system project skill retains its earlier priority):
+One PR, before any module:
 
-- **Workspace foundation:** use the [agents design and proof gates](architecture/agents-workspace.md#implementation-sequence-and-proof-gates) to settle a minimal package layout and checks. The existing `skills/` paths below describe the starting point; an actual move needs a coordinated installer proof and consumer update.
 - **Remove the linked skills:** the three submodules under `upstream/`, the six links in `skills/`, `upstream.toml`, and the README's linked-skills sections. Their repositories, commits and licences move to [skill references](resources/skill-references.md).
 - **`scripts/check.sh` for modules:** front matter as the specification sets it (name rules including no consecutive hyphens, description at most 1024 characters, `compatibility` at most 500); no symlinks anywhere under `skills/`; every module has `CREDITS.md`; every relative link from `SKILL.md` resolves, one level deep; a warning above 500 lines of `SKILL.md`. The link and submodule checks go.
 - **The README:** the rules for writing a module, in place of "Adding a skill".

@@ -1,85 +1,76 @@
 ---
 id: AS-ARCH-AGENTS-WORKSPACE
 kind: architecture
-title: Agents workspace and profile boundaries
-summary: "The proposed agents monorepo: independently usable content and tools, component-owned profile interpretation, native projections, and a bounded implementation path."
+title: Agents workspace and configuration boundaries
+summary: "The proposed agents monorepo: skills at the root as today, public harness defaults under configs/, a private overlay in Groundwork's agent-config repository with the stricter value winning for sandbox settings, Rust from AG1, and proof gates AG1 to AG3."
 status: proposed
 created: 2026-11-12
-updated: 2026-11-12
+updated: 2026-11-12  # after the independent review and the owner's choices: skills stay at the root; the package map trimmed to skills, configs, crates and wiki; defaults and overlay with the stricter-wins rule; proof steps AG1 to AG3
 derived_from: AS-ADR-0001
-related: [AS-ADR-0001, AS-RES-AGENTS-LINEAGE, AS-PROGRAM, AS-ARCH-GUEST-INSTALL, WS-ADR-0004, WS-ARCH-CONTRACTS]
+related: [AS-ADR-0001, AS-RES-AGENTS-LINEAGE, AS-PROGRAM, AS-ARCH-GUEST-INSTALL, WS-ADR-0004, WS-ARCH-CONTRACTS, GW-ADR-0011, GW-ADR-0016]
 ---
 
-# Agents workspace and profile boundaries
+# Agents workspace and configuration boundaries
 
-The [decision](../records/2026-11-12-agents-monorepo-decision.md) establishes the expanded scope. This page proposes its implementation; [STATE](../records/STATE.md) holds delivery status. Existing skill paths and installation behavior remain documented in [skill sources](skill-sources.md) and [guest install](guest-install.md).
+The [decision](../records/decisions/0001-agents-monorepo.md) records what the owner decided. This page proposes how to build it; [STATE](../records/STATE.md) holds delivery status. Today's skill paths and installation are in [skill sources](skill-sources.md) and [guest install](guest-install.md).
 
-## Package responsibilities
+## Layout
 
-| Proposed location | Owns | Boundary |
+| Location | Holds | Boundary |
 | --- | --- | --- |
-| `packages/skills/` | Standard skill modules with `SKILL.md`, references, optional scripts/assets and credits | Content package; consuming instructions does not require Cargo |
-| `packages/configs/` | Reusable instructions, agent profile defaults, prompts, command/hook templates and references | No credentials, machine inventory or universal authorization schema |
-| `packages/providers/` | Curated descriptions of relevant provider requirements, native settings and supported capabilities | Descriptions are versioned claims; actual availability and native state are queried |
-| `packages/adapters/` | Concrete mappings and templates from selected shared intent to supported native configuration | No orchestration framework; implement only a demonstrated mapping |
-| `packages/tools/` | Portable agent utilities when an actual reusable tool exists | Existing native tools remain independent; cataloguing one does not install it |
-| `crates/agent-kit/` | Candidate Rust contributor CLI for validation, rendering and inspection | Name provisional; start with one crate when functionality warrants it |
+| `skills/` (root, as today) | The skills package: one module per folder, `skills/<name>/SKILL.md`, with `references/` and `CREDITS.md` ([module shape](../program.md#the-module-shape)) | The skills CLI finds it without a deep search. No Cargo or Moon needed to read or install it |
+| `configs/<harness>/` | Public defaults for one harness, in its own file formats: a user-level instructions file first (AG2), generic settings and a sandbox baseline later (AG3) | No secrets, hostnames or personal paths. A README per harness lists the supported keys, which ones are policy keys, and the evidence for each |
+| `crates/` | From AG1: the validator that replaces `scripts/check.sh`; a composer only if AG2 or AG3 needs one | A Cargo workspace with its own lockfile; Moon runs its tasks |
+| `.moon/`, `.prototools` | From AG1: tasks and tool pins | Needs Moon's guest admission extended to this repository (GW-ADR-0016 covers Workstation only) |
 | `wiki/` | Agents-specific knowledge, decisions, compatibility evidence and source lineage | Current owning contracts outrank historical descriptions |
-| `.moon/` | Task graph and repository checks | Cargo and native manifests keep their own responsibilities |
 
-This is a responsibility map, not a requirement to create empty packages. A content package needs neither `Cargo.toml` nor `package.json`. Introduce a Cargo workspace when actual Rust code exists, using ordinary Cargo conventions and the chosen toolchain's supported resolver. Do not turn a Markdown skill into a Rust crate solely for uniformity.
+A directory is created when it has content, not ahead of time. Not planned:
 
-## Profile sources and consumers
+- **`providers/` and `adapters/`.** What a provider supports is recorded in the harness README that uses it, with evidence. A separate description package would copy native state that goes stale.
+- **Session backends** (herdr, tmux, TUIOS). Their settings belong to Workbench, behind its adapter contract (WS-ADR-0004 decision 9); the [`multiplex`](../program.md#m3-multiplex) module describes how agents use them.
+- **A `tools/` package.** A reusable tool gets its own directory when one exists. A module that needs a tool checks for it and never installs it.
 
-Workstation's [WS-ADR-0004](https://github.com/luckgrid/workstation/blob/main/wiki/records/decisions/0004-profiles-private-sources-and-secret-references.md) is the latest design reference (Workstation is still private and in development). It remains proposed. Its source model is useful here: public defaults versioned with a release; private Git sources referenced by URL/ref and locked to a commit; local bindings; secret references; and attributable resolution.
+## Who interprets which configuration
 
-| Configuration concern | Interpreter and authority |
+| Concern | Interpreter and authority |
 | --- | --- |
-| Tools and harnesses selected for observation | `ws`, using its existing small profile contract |
-| Environment provisioning and admitted tool sets | Groundwork and Workbench's owning setup procedures |
+| Tools and harnesses selected for observation | `ws`, using its small profile contract |
+| Environment provisioning and admitted tool sets | Groundwork and Workbench's setup procedures |
 | Guest session backend and daily-use settings | Workbench, under its reviewed interfaces |
-| Reusable agent instructions and defaults | Agents workspace, projected into an explicitly supported harness |
-| Effective model settings, session behavior and authentication | Native harness/provider |
-| Access, secret scopes and permissions | OS, sandbox/VM, credentials and native provider policy |
-| Workflow execution, queues and continuity | The independently selected runtime or Workflow Factory if adopted |
+| Public agent config defaults | This repository (`configs/`) |
+| Private agent config overlay | Groundwork's agent-config repository ([GW-ADR-0011](https://github.com/luckgrid/workstation/blob/main/wiki/groundwork/records/decisions/0011-agent-harnesses-and-subscription-logins.md), private), pinned to a commit |
+| The guest's installed harness settings, sandbox and deny rules included | Workbench's stage C, combining the two pinned sources (amendment proposed, not made); gate A2 checks the result |
+| Effective model settings, sessions and authentication | The native harness and provider |
+| Credentials, containment and network policy | OS, VM, credentials and provider policy |
+| Workflow execution, queues and continuity | An independently chosen runtime, or Workflow Factory if adopted |
 
-For configuration values a future consumer supports, WS-ADR-0004 proposes precedence from highest to lowest: flags, environment variables, machine-local bindings, private profile sources, public profiles, built-in defaults. Adoption here must define the supported fields, list/merge behavior, provenance and errors explicitly. Precedence does not authorize widening an environment's enforced access, passing a secret into a guest, or overriding a stricter owning policy.
+"Profile" already names `ws` profiles, Groundwork's environment profiles and GW-ADR-0011's agent layer, so this repository says "config defaults" instead.
 
-Profiles hold references to secrets, never literal credentials. Secret backend selection, trust, reachability and allowed scopes remain environment-owned. fnox is Workstation's first evaluation candidate, not an agents dependency or an implemented backend. An unavailable required value must be reported without printing its secret. Rendered configurations and observations are local, rebuildable views; they are not another source of native session state.
+## Defaults and overlay
 
-## Portable directory and native views
+The owner chose public defaults here with a private overlay ([AS-ADR-0001](../records/decisions/0001-agents-monorepo.md), decisions 5 and 6). Proposed composition:
 
-Distinguish the authoring repository, user-level selections, project-local selections and each harness's actual discovery paths. `~/.agents/` and project `.agents/` are useful candidate navigation/install surfaces, not a claim that every harness reads the same directory or merges it the same way.
+1. **Two pinned layers.** The defaults at a pinned commit of this repository, then the overlay at a pinned commit of agent-config. Flags and environment variables don't change the composed files, so the same two commits always give the same result. WS-ADR-0004's broader precedence ([decision 4](https://github.com/luckgrid/workstation/blob/main/wiki/records/decisions/0004-profiles-private-sources-and-secret-references.md)) is adopted only through Workstation's W4.
+2. **Ordinary keys:** the overlay's value replaces the default.
+3. **Policy keys** (sandbox mode, deny rules, permission rules, as each harness README lists them): the stricter value wins. Deny lists combine. A mode can only move to a stricter one. An overlay entry that would loosen a default is refused unless a recorded exception names the key, the value, the reason and the owner's approval with its date. A policy key without a defined order of strictness keeps the default.
+4. **User scope only.** Composition writes the harness's user-level files. Project, local and managed settings keep their native precedence, and a project's own rules are never replaced.
+5. **Visible and owned.** The composer shows a diff before writing, records both source commits in the result, reports keys the harness doesn't support, and doesn't overwrite a file the user has edited. Instruction text is never described as enforcement.
 
-- Keep actual skill bodies under `skills/<name>/SKILL.md` within a selected content/install root. The final package nesting is proved with the installer before any path moves.
-- Keep metadata records under a separately named `catalog/` or `registry/` if needed. Historical Workstreams `.agents/skills/*.toml` records are not installable Agent Skills.
-- A project-owned skill stays with its project when it depends on private or tightly coupled project knowledge. The site-system module remains in its own repository.
-- Native instruction precedence and project trust still apply. Global defaults must not silently replace repository rules or overwrite user-edited native config.
-- A projection needs a staged diff, explicit conflict handling and an identifiable source revision. Unsupported fields are reported; never translate an instruction into a false enforcement claim.
+Configuration holds references to secrets, never secrets. Secret backends, scopes and reachability belong to each environment; fnox is Workstation's first evaluation candidate, not a dependency here. A missing required value is reported by its reference.
 
-## Provider roles
+## Installer and Rust
 
-| Role | What remains native |
-| --- | --- |
-| Agent harness, such as Pi, Claude Code, Codex or Cursor | Session/process lifecycle, supported settings and permission behavior |
-| Model/API provider, such as OpenAI, Anthropic, OpenRouter or Ollama | Endpoint capabilities, available models and authentication |
-| Session/workspace provider, such as herdr or tmux | Worktree/session topology and its supported control surface |
-| Tool/context provider, such as a CLI, MCP server or search service | Tool execution, data retrieval and service-specific state |
+Skills stay at `skills/`, so the installer path doesn't change. Workbench's U16 step and its tests against skills CLI 1.7.6 remain the baseline; a CLI pin change is Workbench's to review. Telemetry stays off as the install procedure requires.
 
-A product can fill several roles. A capability description must name the role and evidence; a binary on PATH establishes presence only. Prefer native structured interfaces, and report unavailable capabilities. A template for a provider does not make it admitted to the Workbench guest or selected in `ws`.
+Rust starts at AG1 with a concrete job: replacing `check.sh`. Cargo owns Rust builds and dependencies; Moon runs the checks. Skill users need neither. Any new dependency, tool pin or install command follows the owning environment's admission procedure.
 
-## Skills installer and Rust tooling
+## Steps and proof gates
 
-Use the open Agent Skills format and the existing skills CLI first. Workbench currently documents tests against CLI 1.7.6; current upstream features cannot substitute for evidence against its pin. Before changing `skills/` to a package path, prove discovery and installation from the exact proposed local export, including references and resources, with no network and an empty destination home. Verify every selected harness's installed files and discovery. Keep telemetry disabled as required by the owning install procedure.
-
-Use Rust for a concrete contributor need: schema validation, deterministic rendering, provenance inspection or a configuration diff. Cargo owns Rust builds and dependencies; Moon runs the checks across packages. Skill users should not need Moon or Rust to read or install plain content. Any host binary, new dependency, install command or pin change follows the owning environment's admission procedure.
-
-## Implementation sequence and proof gates
-
-1. Record the decision, lineage and boundaries in this wiki, with Workstation's matching reference. This is the documentation scope of this session.
-2. Extend M0's module foundation with the smallest package layout and Moon tasks, preserving the existing module identities and the site-system priority. Remove upstream links as already decided; retain their research credits.
-3. Prove the proposed skills package path with Workbench's pinned installer and export procedure. Update installation docs and Workstation's consumer in a coordinated change before pinning that revision. Do not create compatibility symlinks that contradict M0's no-symlinks rule.
-4. Demonstrate one non-secret shared agent configuration through two native harness mappings. Check determinism, precedence, conflicts, unsupported fields and file ownership. Add a Rust CLI only if that proof needs one.
-5. Extend private-source and secret-reference support only through explicit contracts and environment tests, coordinated with Workstation's W4 gate. Do not claim W4 passed from a docs merge.
+1. **This documentation.** The decision, this design and the lineage, with Workstation's matching note.
+2. **Rename** to `luckgrid/agents`, by the owner, after this PR merges. A Workstation PR then updates GW-ADR-0014 decision 1, `workbench-tools.toml`'s pin, U16's clone path and the links.
+3. **M7 and M0 to M2**, as the [roadmap](../program.md) sets them. M0 is unchanged by this design.
+4. **AG1, after M2: the Rust validator.** It makes the same checks as M0's `check.sh`, which it replaces, with the same output for the same tree. Moon and its pins arrive with an admission note extending GW-ADR-0016 to this repository.
+5. **AG2: one shared default, two harnesses.** User-level instructions for Claude Code and Codex in `configs/claude-code/` and `configs/codex/`, each in the file its harness documents for user-level instructions (confirmed from each harness's documentation at the installed version, not assumed). Proved in the guest: both harnesses load the text, the diff and source commit are shown, and a user edit isn't overwritten. No settings or policy keys yet.
+6. **AG3: settings with the overlay.** Generic settings and a sandbox baseline in `configs/`, the agent-config overlay, and composition with the stricter-wins rule. Needs GW-ADR-0011's stage C amendment in Workstation and gate A2 on the composed result; private sources follow W4. A docs merge doesn't pass A2 or W4.
 
 Workflow Factory stays independent and in progress. WfOS resumption remains optional; no Ontarch/Panoply/Takogami package, policy engine, universal graph, hosted registry or continuity store is required by these steps.

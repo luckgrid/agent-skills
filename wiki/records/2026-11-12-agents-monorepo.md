@@ -49,7 +49,7 @@ The inspected baselines were agent-skills `6b02f370bbdd62b12aaddeb81fc7629689f6c
 
 ## Recorded outcome
 
-- [AS-ADR-0001](2026-11-12-agents-monorepo-decision.md) records the owner-directed scope and rationale.
+- [AS-ADR-0001](decisions/0001-agents-monorepo.md) records the owner-directed scope and rationale (first written as `records/2026-11-12-agents-monorepo-decision.md`; moved and split into the owner's decisions and the session's proposals after the [review](#the-review-and-the-owners-choices-2026-11-12)).
 - [Agents workspace](../architecture/agents-workspace.md) separates the proposed package structure and proof gates from that decision.
 - [Knowledge lineage](../resources/agents-knowledge-lineage.md) consolidates source concepts and their present dispositions.
 - Workstation receives a corresponding architecture note and session record about typed profiles, native authority and the external agents workspace. Its implementation, W4 acceptance, tool pins and roadmap phase order do not change.
@@ -74,3 +74,37 @@ Checked 116 wiki IDs, 92 relationships and 247 local links/anchors across change
 - [Workstation #30](https://github.com/luckgrid/workstation/pull/30): the matching profile ownership note and session record. Workstation is private and in development; this link requires collaborator access.
 
 Both documentation branches are `docs/agents-monorepo-knowledge`, targeting their own repository's `main`. The session opened one PR per repository and performed no merge.
+
+## The review and the owner's choices (2026-11-12)
+
+The owner asked for a critical review of both PRs at agent-skills `3f65f1da6b456f74fcb90ba6fd0f8fc332e8cecb` and Workstation `09107865212e2ea1b98df492516153208b717b37`. It ran in a separate session from the one that wrote them; it is not the owner's acceptance. Its author checks reproduced the ones above (rumdl clean; 116 IDs, no duplicates, no missing related ID on a changed page).
+
+| Finding | Severity | Disposition |
+| --- | --- | --- |
+| H1: agent configuration already has a planned owner, Groundwork's private agent-config repository (GW-ADR-0011 stage C; GW-ADR-0014 decision 1), and its harness settings hold sandbox and deny rules checked by gate A2 | High | Owner decision: public defaults here, private overlay there; A2 on the combined result ([AS-ADR-0001](decisions/0001-agents-monorepo.md), decisions 5 and 6). Workstation's note and authority map name the relationship |
+| H2: AS-ADR-0001 was `accepted` but mixed the owner's decisions with the session's design and reasons | High | Split into the owner's decisions, the session's proposals and the session's reasons; moved to `records/decisions/` |
+| M1: moving skills to `packages/skills/` departs from where the skills CLI looks first and creates migration work | Medium | Skills stay at `skills/`; the installer re-proof step is gone |
+| M2: M0 had grown (Moon, installer proof) and disagreed with its "Done when"; Moon is admitted for Workstation only | Medium | M0 restored; Rust and Moon are AG1, after M2 (owner decision 7) |
+| M3: separate providers, adapters and tools packages duplicate Workstation's catalog, Workbench's session-backend contract and `multiplex` | Medium | Layout trimmed to `skills/`, `configs/<harness>/`, `crates/`, `wiki/` |
+| M4: WS-ADR-0004's six-layer precedence was restated without reconciling each harness's own precedence; "profile" was overloaded | Medium | Two pinned layers at composition, user scope only, stricter wins for policy keys; WS-ADR-0004 linked, not restated; "config defaults" |
+| M5: lg-workstreams links weren't labelled private | Medium | Labelled in the lineage |
+| M6: the lineage pins lg-workstreams `c1c9ef09…`, while Workstation records it as read-only at `1927adfe…` | Medium | Not verified here (private); noted in the lineage as open |
+| L1: Workstation's record cites the unmerged commit `942e6d2` | Low | Kept; to be re-pointed to the merge commit after this PR merges |
+| L2: the decision sat in `records/` rather than `records/decisions/` | Low | Moved; ID unchanged |
+| L3: "optional scripts/assets" in skill modules didn't match the module shape | Low | Removed; the module shape is unchanged |
+| L4: Workstation's records index listed the record outside its dated list | Low | Fixed in Workstation's PR |
+
+The owner then wrote: "help me with open decisions please". The session recommended an option for each open decision and asked; the owner chose:
+
+| Question | Options offered | Chosen |
+| --- | --- | --- |
+| Where agent configuration lives | Keep agent-config separate (recommended); public defaults + private overlay; merge into the agents monorepo | "Public defaults + private overlay" |
+| When Rust and Moon come in | After M2, validator first (recommended); in M0; only when a tool needs it | "After M2, validator first (Recommended)" |
+| The first shared-config proof | Claude Code + Codex (recommended); Pi + Claude Code; Claude Code + Cursor Agent | "Claude Code + Codex (Recommended)" |
+| A rename | Keep the name for now (recommended); rename now; rename at Workstation's public release | "Rename now" |
+
+The session then suggested `luckgrid/agents` as the name, and a rule for the overlay: for sandbox and deny settings, the stricter value wins, deny lists combine, and loosening one needs a recorded exception. The owner's answer, word for word:
+
+> lets go with luckgrid/agents for the name and also with you about overlay rules to replace defaults in sandbox
+
+The session read "with you about overlay rules" as agreeing to that rule, and recorded it as AS-ADR-0001 decision 6; ordinary keys in the overlay replace the default.

@@ -5,7 +5,7 @@ title: Agents knowledge lineage
 summary: "Pinned sources and a disposition crosswalk for profiles, providers, skills, tools and native projections, consolidated from Workstation, WfOS and lg-workstreams."
 status: active
 created: 2026-11-12
-updated: 2026-11-12
+updated: 2026-11-12  # after the independent review: lg-workstreams labelled private; the lg-workstreams revision question recorded
 related: [AS-ADR-0001, AS-ARCH-AGENTS-WORKSPACE, AS-REC-2026-11-12-AGENTS-MONOREPO, AS-RESOURCES, WS-ADR-0004]
 ---
 
@@ -15,7 +15,7 @@ This is a curated consolidation of concepts and their dispositions, not a migrat
 
 ## Source order and pinned evidence
 
-All sources below were read on 2026-11-12. Workstation and wiki-nest are still private; those links require collaborator access. Their design principles are summarized here without machine inventory, credentials or personal configuration.
+All sources below were read on 2026-11-12. Workstation, wiki-nest and lg-workstreams are private; those links require collaborator access. WfOS is public. Their design principles are summarized here without machine inventory, credentials or personal configuration.
 
 | Source | Revision read | Contribution and limits |
 | --- | --- | --- |
@@ -27,6 +27,8 @@ All sources below were read on 2026-11-12. Workstation and wiki-nest are still p
 | [Terminal augmentation foundation, sections 7 and 13](https://github.com/luckgrid/lg-workstreams/blob/c1c9ef09c56cbbda2ed2ca381561c082dd27a49e/Plan/bin/archives/workbench/terminal-augmentation/lg_terminal_augmentation_system_foundation.md) | Same Workstreams revision | Archived broader dimensions: system, authority, environment, workflow, interface and provider; bounded projections preserve native ownership. A reasoning aid, not a required schema or product scope |
 | [Workflow Factory standards](https://github.com/luckgrid/lg-workstreams/blob/c1c9ef09c56cbbda2ed2ca381561c082dd27a49e/Build/bin/workflow-factory/foundation/workflow-pattern-standards.md) and [provider architecture](https://github.com/luckgrid/lg-workstreams/blob/c1c9ef09c56cbbda2ed2ca381561c082dd27a49e/Build/bin/workflow-factory/architecture/provider-capability-model.md) | Same Workstreams revision | Provider-neutral workflow intent; native manifests; separate workspace, execution, presentation and harness roles. Remains independent WIP; its workflow rules are not adopted wholesale |
 | [Wiki structure](https://github.com/luckgrid/wiki-nest/blob/main/wiki-structure.md) | Read 2026-11-12; live writing authority | Slim wiki structure, stable IDs, evidence retention, decisions and state. wiki-nest incubates wikis for workspaces without a home; no migration planned here |
+
+**Open (review M6, 2026-11-12):** Workstation records lg-workstreams as a read-only reference whose `main` is `1927adfe32324dfac4166cfab20bceeffb446f2a` (WS-REC-LG-WORKSTREAMS-FREEZE), and cites Workflow Factory under `Plan/bin/workflow-factory` at that commit. The rows above read `c1c9ef09c56cbbda2ed2ca381561c082dd27a49e` and `Build/bin/workflow-factory`. Which commit is on `main`, and what changed between them, is not yet confirmed.
 
 Pinned links identify what this session read. They do not freeze future knowledge: a later change re-reads the current owning contract and records its new revision before updating the consolidation.
 
@@ -52,4 +54,4 @@ Pinned links identify what this session read. They do not freeze future knowledg
 - [Cargo workspaces](https://doc.rust-lang.org/cargo/reference/workspaces.html): Rust packages, dependencies and lockfile remain native; content packages do not need Cargo manifests.
 - [Moon Rust handbook](https://moonrepo.dev/docs/guides/rust/handbook): Moon orchestrates Cargo tasks rather than replacing Cargo.
 
-These upstream interfaces were researched in this session. They do not prove that any proposed agents layout or adapter works. See the [workspace proof gates](../architecture/agents-workspace.md#implementation-sequence-and-proof-gates).
+These upstream interfaces were researched in this session. They do not prove that any proposed agents layout or adapter works. See the [workspace proof gates](../architecture/agents-workspace.md#steps-and-proof-gates).
