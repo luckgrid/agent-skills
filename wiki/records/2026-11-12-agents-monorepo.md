@@ -67,3 +67,10 @@ Checked 116 wiki IDs, 92 relationships and 247 local links/anchors across change
 
 - Source code, skills, installation manifests and configuration schemas are outside the changed-file set; Rust/build, skill-install and host/guest runtime suites were not run for this documentation change. No runtime compatibility proof is claimed.
 - These are author checks. A fresh independent acceptance review remains separate.
+
+## PR delivery (2026-11-12)
+
+- [agent-skills #7](https://github.com/luckgrid/agent-skills/pull/7): the agents monorepo decision, proposed workspace and knowledge consolidation.
+- [Workstation #30](https://github.com/luckgrid/workstation/pull/30): the matching profile ownership note and session record. Workstation is private and in development; this link requires collaborator access.
+
+Both documentation branches are `docs/agents-monorepo-knowledge`, targeting their own repository's `main`. The session opened one PR per repository and performed no merge.
