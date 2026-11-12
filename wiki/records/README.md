@@ -9,3 +9,5 @@ Dated episodes, named for the date their first content happened. Where the repos
 - [2026-11-12-workstation-links.md](2026-11-12-workstation-links.md): agent-skills#3, links into Workstation, and the owner's answer to CR-08.
 - [2026-11-12-wiki.md](2026-11-12-wiki.md): this wiki, added.
 - [2026-11-12-skill-modules.md](2026-11-12-skill-modules.md): planning the custom skill modules: the ask, the owner's choices, what the records and 20 repositories hold, and the measurements.
+- [2026-11-12-agents-monorepo-decision.md](2026-11-12-agents-monorepo-decision.md): AS-ADR-0001, the owner-directed expansion and its reasons; detailed implementation remains proposed.
+- [2026-11-12-agents-monorepo.md](2026-11-12-agents-monorepo.md): the owner messages, research, corrections, independent-workspace boundaries and delivery evidence.

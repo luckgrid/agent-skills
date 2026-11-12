@@ -2,16 +2,16 @@
 id: AS-STATE
 kind: state
 title: State
-summary: "Where agent-skills stands: nine skills on main (two written here, one copy, six linked), check.sh passing with submodules; nothing installed in the guest yet; next, the refactor to custom skill modules M0 to M9 (owner, 2026-11-12), the site-system project skill first; the decisions in force."
+summary: "Where agent-skills stands: nine skills on main (two written here, one copy, six linked), check.sh passing with submodules; nothing installed in the guest yet; the agents monorepo direction and knowledge consolidation, plus the refactor to custom skill modules M0 to M9 (owner, 2026-11-12), the site-system project skill first; the decisions in force."
 status: active
 created: 2026-11-12
-updated: 2026-11-12  # the custom-modules plan (owner, 2026-11-12)
-related: [AS-REC-2026-11-12-SKILL-MODULES, AS-RES-SKILL-REFERENCES, AS-PROGRAM, AS-ARCH-SKILL-SOURCES, AS-ARCH-GUEST-INSTALL, GW-ADR-0014]
+updated: 2026-11-12  # agents monorepo direction and knowledge consolidation; before that, the custom-modules plan (owner, 2026-11-12)
+related: [AS-ADR-0001, AS-ARCH-AGENTS-WORKSPACE, AS-RES-AGENTS-LINEAGE, AS-REC-2026-11-12-SKILL-MODULES, AS-RES-SKILL-REFERENCES, AS-PROGRAM, AS-ARCH-SKILL-SOURCES, AS-ARCH-GUEST-INSTALL, GW-ADR-0014]
 ---
 
 # State
 
-**As of 2026-11-12, `main` at `9ff8b6c`.** Results are as their records give them.
+**As of 2026-11-12.** Runtime results remain as their records give them; the documentation research baseline is recorded in the [agents monorepo session](2026-11-12-agents-monorepo.md).
 
 ## Where it stands
 
@@ -23,12 +23,16 @@ related: [AS-REC-2026-11-12-SKILL-MODULES, AS-RES-SKILL-REFERENCES, AS-PROGRAM, 
 | The wiki | Added on 2026-11-12 ([record](2026-11-12-wiki.md)) |
 | The plan | Fully custom skill modules, planned on 2026-11-12 ([record](2026-11-12-skill-modules.md), [roadmap](../program.md)); nothing built yet |
 
+## Agents workspace direction (owner, 2026-11-12)
+
+[AS-ADR-0001](2026-11-12-agents-monorepo-decision.md) records the expansion into an agents monorepo and its reasons. The [workspace design](../architecture/agents-workspace.md) and [knowledge lineage](../resources/agents-knowledge-lineage.md) consolidate profiles, providers and native projections using Workstation as the latest source. Detailed layout, adapters, schemas, rename and install changes remain proposed; this documentation delivers no implementation. Workflow Factory stays independent WIP, WfOS resumption is optional, and wiki-nest context creates no migration task.
+
 ## Open
 
 | Item | Gate | Page |
 | --- | --- | --- |
 | M7: `site-system`, a project skill in the site-system repository, with `design-system`'s consume rules until M6 | **First** (owner, 2026-11-12) | [M7](../program.md#m7-site-system-a-project-skill-in-site-system) |
-| M0: remove the linked skills; `check.sh` and the README for modules | After M7 | [M0](../program.md#m0-the-module-foundation) |
+| M0: remove the linked skills; `check.sh` and the README for modules; prove the agents package foundation and installer compatibility | After M7; detailed layout remains proposed | [M0](../program.md#m0-the-module-foundation) |
 | M1: `workbench` (replaces `wb-guest-rules`, `wb-herdr`) | After M0 | [M1](../program.md#m1-workbench) |
 | M2: `council` (takes in `wb-review`, `wb-remediate`; reviewers with lenses, in rounds) | After M1; Workbench's step F1 needs it | [M2](../program.md#m2-council) |
 | M3: `multiplex` (replaces `herdr`; herdr the default backend, H1 and H3) | After M2 | [M3](../program.md#m3-multiplex) |
@@ -46,6 +50,7 @@ The owner's decisions that bind this repository, newest first. Groundwork's GW-A
 
 | Date | Decision | Where recorded |
 | --- | --- | --- |
+| 2026-11-12 | Expand into an agents monorepo; skills become a package; consolidate relevant knowledge using Workstation as latest source; Workflow Factory stays independent and WfOS optional | [AS-ADR-0001](2026-11-12-agents-monorepo-decision.md), [session](2026-11-12-agents-monorepo.md) |
 | 2026-11-12 | Third round: `wiki` publishes the wiki template's rules in its own words, with `wiki-structure.md` the authority; the `site-system` project skill is built first; a `triage` module, with debugging part of it | [record](2026-11-12-skill-modules.md#third-round-the-open-questions-answered-2026-11-12) |
 | 2026-11-12 | Second round: the review module is `council` (several models, each with a lens, in rounds); `multiplex` replaces `herdr`, with herdr the default backend; new modules `design-system` here and `site-system` as a project skill in the site-system repository | [record](2026-11-12-skill-modules.md#second-round-the-owners-feedback-2026-11-12) |
 | 2026-11-12 | Fully custom skill modules instead of maintaining an upstream, with a reference list of skills; own words only, ideas credited; the linked skills removed in the first refactor PR; the review module named `peer-review` (renamed `council` the same day); `frugal` as instructions first, rtk and qmd later through Workbench's catalog | [record](2026-11-12-skill-modules.md#the-owners-choices-2026-11-12) |

@@ -6,12 +6,18 @@ summary: "The refactor to fully custom skill modules (owner, 2026-11-12): M0 rem
 status: active
 created: 2026-11-12
 updated: 2026-11-12  # third round (owner): the open questions answered, the order, triage; before that, second round (owner): council, multiplex, design-system and site-system; before that, the custom-modules refactor (owner, 2026-11-12); before that, P1 to P3 from the wiki's first version
-related: [AS-STATE, AS-RES-SKILL-REFERENCES, AS-REC-2026-11-12-SKILL-MODULES, GW-ADR-0014, GW-ARCH-WORKBENCH-AGENT-WORKFLOWS, AS-ARCH-SKILL-SOURCES, AS-ARCH-GUEST-INSTALL]
+related: [AS-ADR-0001, AS-ARCH-AGENTS-WORKSPACE, AS-STATE, AS-RES-SKILL-REFERENCES, AS-REC-2026-11-12-SKILL-MODULES, GW-ADR-0014, GW-ARCH-WORKBENCH-AGENT-WORKFLOWS, AS-ARCH-SKILL-SOURCES, AS-ARCH-GUEST-INSTALL]
 ---
 
 # Roadmap
 
 Where things stand is in [STATE](records/STATE.md); this page doesn't restate it. Nothing here reaches the guest until Workbench's step F1 pins a commit of this repository ([guest install](architecture/guest-install.md)). The research and the owner's choices behind this plan are in the [skill modules record](records/2026-11-12-skill-modules.md); the skills each module learns from are listed in [skill references](resources/skill-references.md).
+
+## Agents monorepo foundation (owner direction, 2026-11-12)
+
+The [decision and reasons](records/2026-11-12-agents-monorepo-decision.md) expand the workspace to reusable agent configurations, skills and tools. The [workspace design](architecture/agents-workspace.md) proposes packages and proof gates; the [knowledge lineage](resources/agents-knowledge-lineage.md) consolidates older sources under Workstation's current profile and authority direction. That expansion does not change the module IDs, the site-system-first priority or private project placement below.
+
+Extend M0 with the smallest useful content package layout and Moon checks, then prove the exact local export with Workbench's pinned installer before any skill-path or pin change. Demonstrate one shared non-secret configuration through two native harness mappings before expanding adapters. Cargo remains the Rust build authority; plain skill consumers need no Rust. Crate/binary names, profile schemas and a repository rename remain proposals. No empty package scaffold, WfOS runtime, Ontarch registry, Workflow Factory import or migration is required by this documentation step. Workstation W4 remains the separate proof for its proposed private sources and secret handling.
 
 ## The direction (owner, 2026-11-12)
 
@@ -69,8 +75,9 @@ skills/<module>/
 
 ## M0: the module foundation
 
-One PR, before any module:
+One PR, before any module in this repository (the private site-system project skill retains its earlier priority):
 
+- **Workspace foundation:** use the [agents design and proof gates](architecture/agents-workspace.md#implementation-sequence-and-proof-gates) to settle a minimal package layout and checks. The existing `skills/` paths below describe the starting point; an actual move needs a coordinated installer proof and consumer update.
 - **Remove the linked skills:** the three submodules under `upstream/`, the six links in `skills/`, `upstream.toml`, and the README's linked-skills sections. Their repositories, commits and licences move to [skill references](resources/skill-references.md).
 - **`scripts/check.sh` for modules:** front matter as the specification sets it (name rules including no consecutive hyphens, description at most 1024 characters, `compatibility` at most 500); no symlinks anywhere under `skills/`; every module has `CREDITS.md`; every relative link from `SKILL.md` resolves, one level deep; a warning above 500 lines of `SKILL.md`. The link and submodule checks go.
 - **The README:** the rules for writing a module, in place of "Adding a skill".

@@ -6,7 +6,7 @@ summary: "The format, tools, upstream repositories and Luckgrid pages behind age
 status: active
 created: 2026-11-12
 updated: 2026-11-12  # became a folder, with skill references beside it
-related: [AS-ARCH-SKILL-SOURCES, AS-ARCH-GUEST-INSTALL, GW-ADR-0014, AS-RES-SKILL-REFERENCES]
+related: [AS-RES-AGENTS-LINEAGE, AS-ARCH-SKILL-SOURCES, AS-ARCH-GUEST-INSTALL, GW-ADR-0014, AS-RES-SKILL-REFERENCES]
 ---
 
 # Sources
@@ -51,3 +51,7 @@ In luckgrid/workstation, which is still in development and private for now:
 - Workstation's [consolidation review](https://github.com/luckgrid/workstation/blob/main/wiki/records/2026-11-12-consolidation-review.md) (CR-08).
 
 In luckgrid/wiki-nest (private): `wiki-structure.md`, the shared wiki template this wiki follows.
+
+## Agents workspace knowledge
+
+[Agents knowledge lineage](agents-knowledge-lineage.md) consolidates pinned Workstation, WfOS and Workstreams sources, their dispositions and the relevant community interfaces. Workstation is the latest source for shared profile direction; agent-specific contracts are owned here. Historical implementations are not dependencies by default.

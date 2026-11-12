@@ -9,14 +9,17 @@ It follows Luckgrid's shared wiki template, the wiki structure kept in luckgrid/
 1. [records/STATE.md](records/STATE.md): where the repository stands, what is open, and the decisions in force.
 2. [architecture/skill-sources.md](architecture/skill-sources.md): the three kinds of skill (written here, copied, linked), `upstream.toml`, and what `scripts/check.sh` proves.
 3. [architecture/guest-install.md](architecture/guest-install.md): how the Workbench guest is to install these skills, what the skills CLI was tested to do, and what has to change before linked skills are pinned.
-4. [program.md](program.md): the roadmap, now the refactor to custom skill modules.
-5. [records/README.md](records/README.md): the dated history, one record per episode.
-6. [resources](resources/README.md): the sources behind it, and the [skill references](resources/skill-references.md) each planned module learns from.
+4. [Agents monorepo decision](records/2026-11-12-agents-monorepo-decision.md), [workspace proposal](architecture/agents-workspace.md) and [knowledge lineage](resources/agents-knowledge-lineage.md): expanded scope, profiles, providers and source precedence.
+5. [program.md](program.md): the module roadmap and the bounded monorepo foundation.
+6. [records/README.md](records/README.md): the dated history, one record per episode.
+7. [resources](resources/README.md): the sources behind it, and the [skill references](resources/skill-references.md) each planned module learns from.
 
 ## Which page decides what
 
 | Question | Page |
 | --- | --- |
+| Why this workspace expands, and what remains independent | [Agents monorepo decision](records/2026-11-12-agents-monorepo-decision.md) |
+| Shared profile direction and historical knowledge dispositions | Workstation's current wiki, then the [agents-specific design](architecture/agents-workspace.md) and [lineage](resources/agents-knowledge-lineage.md) |
 | The rules for working in this repository (no secrets, how to add a skill, licences) | the root `README.md` |
 | Whether and how the Workbench guest installs skills, and with which CLI | Groundwork's GW-ADR-0014 (Workstation) |
 | The review-and-remediate workflow these skills serve (step F1 onwards) | Workbench's agent workflows (Workstation) |
@@ -27,7 +30,7 @@ It follows Luckgrid's shared wiki template, the wiki structure kept in luckgrid/
 
 ## Writing standard
 
-- Non-README pages carry `id`, `kind`, `title`, `summary`, `status`, `created`, `updated` and `related` (IDs, never slugs or paths). IDs here use the `AS-` prefix: `AS-ARCH-…`, `AS-REC-…`, `AS-PROGRAM`, `AS-STATE`, `AS-RESOURCES`, `AS-RES-…`. An ID never changes when a page moves.
+- Non-README pages carry `id`, `kind`, `title`, `summary`, `status`, `created`, `updated` and `related` (IDs, never slugs or paths). IDs here use the `AS-` prefix: `AS-ARCH-…`, `AS-ADR-NNNN`, `AS-REC-…`, `AS-PROGRAM`, `AS-STATE`, `AS-RESOURCES`, `AS-RES-…`. An ID never changes when a page moves.
 - **Status lives in one place:** [STATE](records/STATE.md). Other pages link to it instead of restating it.
 - **Records keep their history.** A dated record is named for the date its first content happened and keeps its wording; corrections go in a later record or a dated note. Evidence (check output, hashes, the owner's words) is quoted word for word.
 - **Label evidence.** Tell apart the owner's decisions, results the owner reported, results a session ran, upstream claims and proposals. A proposal is not acceptance.
