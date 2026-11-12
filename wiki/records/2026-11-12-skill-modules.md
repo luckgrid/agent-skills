@@ -2,10 +2,10 @@
 id: AS-REC-2026-11-12-SKILL-MODULES
 kind: research
 title: Planning the custom skill modules (2026-11-12)
-summary: "The owner asked to replace linked upstream skills with fully custom modules (workbench, grill, frugal, peer-review, herdr, wiki) and a reference list. A cloud session rechecked the skills in records and chat history, read 21 candidate repositories at pinned commits and the online evaluations, and asked four questions; the owner chose own words only, removing upstream in the first PR, the name peer-review, and frugal as instructions first. In a second round the same day the owner renamed peer-review to council and herdr to multiplex, and added design-system and a site-system project skill."
+summary: "The owner asked to replace linked upstream skills with fully custom modules (workbench, grill, frugal, peer-review, herdr, wiki) and a reference list. A cloud session rechecked the skills in records and chat history, read 21 candidate repositories at pinned commits and the online evaluations, and asked four questions; the owner chose own words only, removing upstream in the first PR, the name peer-review, and frugal as instructions first. In a second round the same day the owner renamed peer-review to council and herdr to multiplex, and added design-system and a site-system project skill; in a third round the owner answered the open questions and added triage."
 status: done
 created: 2026-11-12
-updated: 2026-11-12  # second round: the owner's feedback and choices
+updated: 2026-11-12  # third round: the open questions answered; before that, second round: the owner's feedback and choices
 related: [AS-PROGRAM, AS-RES-SKILL-REFERENCES, AS-STATE, AS-REC-2026-11-10-LINKED-UPSTREAM-SKILLS, GW-REC-2026-11-11-HERDR-CORE, GW-ADR-0014]
 ---
 
@@ -133,3 +133,23 @@ Asked as two multiple-choice questions; the owner chose the recommended option e
 - M2 is `council`, M3 is `multiplex`; the owner's herdr decisions H1 and H3 hold for `multiplex`'s herdr reference.
 - New: M6 `design-system` here, and M7 `site-system` in the site-system repository. `frugal` becomes M8.
 - An open question for the owner: whether `design-system` and `site-system` come right after M0, since the site prototypes are due this month.
+
+## Third round: the open questions answered (2026-11-12)
+
+The owner asked to be walked through the open questions, and they were put as three multiple-choice questions, each with its context and a recommended option:
+
+| Question | Owner's answer |
+| --- | --- |
+| Should `wiki`, in this public repository, carry the rules of the wiki template, which live only in private wiki-nest? | "Publish the rules (Recommended)": the module carries them in its own words, and `wiki-structure.md` stays the authority |
+| Which modules first, given the site prototypes due this month, that the `site-system` project skill reaches agents without Workbench's install step, and that F1 needs `workbench` and `council`? | "site-system skill first (Recommended)": the project skill now, with `design-system`'s rules for consuming releases folded in, then M0, `workbench`, `council` and the rest |
+| `systematic-debugging` leaves in M0 and no module takes it: plan a `debug` module, fold it into `council`, or drop it? | Typed, word for word: "how about a broader triage skill module with debug being a part of it, alongside other triage/debug skills" |
+
+### What the triage answer drew on
+
+Read at the commits already listed: obra/superpowers' `systematic-debugging` and its helper notes; mattpocock's `diagnosing-bugs` and `triage`; getsentry's `find-bugs` and `triage-frontend-issues`; rtk's `issue-triage` and `pr-triage`; ponytail's `ponytail-debt`. They split into debugging a failure (a loop that fails first, the root cause before a fix) and triaging a queue (classify, find duplicates, plan, apply on approval). `triage` holds both, with intake, isolate, incident and hand-off modes around them.
+
+### Effect
+
+- The roadmap has an [order](../program.md#order): M7 first, then M0, M1, M2, M3, M4, M5, M6, M8, M9.
+- M9 `triage` is new; `systematic-debugging` goes to it.
+- No owner question is left open in the roadmap.

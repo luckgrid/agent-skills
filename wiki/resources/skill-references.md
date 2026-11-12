@@ -5,7 +5,7 @@ title: Skill references
 summary: "The skills and tools each custom module learns from, with the repository, the commit read, the licence, what it contributes, and how it may be used: ideas only, since every module is written in Luckgrid's own words (owner, 2026-11-12)."
 status: active
 created: 2026-11-12
-updated: 2026-11-12  # second round: council, multiplex, design-system, site-system
+updated: 2026-11-12  # third round: triage; before that, second round: council, multiplex, design-system, site-system
 related: [AS-PROGRAM, AS-REC-2026-11-12-SKILL-MODULES, AS-RESOURCES]
 ---
 
@@ -111,12 +111,23 @@ Re-read an entry at a new commit before a module learns anything new from it.
 | tobi/qmd | MIT | `86d2365d` | Local search over Markdown before reading files. An npm package that downloads local models; a tool for Workbench's catalog |
 | [mksglu/context-mode](https://github.com/mksglu/context-mode) | **Elastic 2.0** (source-available) | `890a3f6b` | Tool output kept out of context and searched on demand |
 
+## `triage` (M9)
+
+| Source | Licence | Commit | What it contributes |
+| --- | --- | --- | --- |
+| obra/superpowers `systematic-debugging` (with `root-cause-tracing.md`, `condition-based-waiting.md`, `defense-in-depth.md`, `find-polluter.sh`) | MIT | `22f0b463` | The root cause before any fix, in four phases; tracing back to the source; waiting on conditions, not sleeps; finding the test that pollutes another; stopping when fixes keep failing |
+| mattpocock/skills `engineering/diagnosing-bugs` | MIT | `4ae2317d` | A feedback loop that fails first, then reproduce and minimise, hypothesise, instrument, fix with a regression test, clean up; redact before sharing |
+| mattpocock/skills `engineering/triage` | MIT | `4ae2317d` | Issues and PRs through triage states; a needs-info template; an agent-ready brief |
+| getsentry/skills `find-bugs`, `triage-frontend-issues` | Apache-2.0 | `e94f2221` | Gather every input, map the attack surface, verify, audit before concluding; a triage plan applied only on approval, with a recovery path |
+| rtk-ai/rtk `.claude/skills/issue-triage`, `pr-triage` (in French) | Apache-2.0 | `2a786dca` | Open issues and PRs audited by category, duplicates, staleness, linked PRs and risk, then a deeper look at the chosen ones |
+| DietrichGebert/ponytail `ponytail-debt` | MIT | `96608e07` | Tracking deliberate shortcuts so they come back up |
+
 ## Removed in M0: the linked skills
 
 Kept here so nothing about them is lost. Their review is in the [linked upstream skills record](../records/2026-11-10-linked-upstream-skills.md).
 
 | Skill | Upstream | Commit | Feeds |
 | --- | --- | --- | --- |
-| `verification-before-completion`, `receiving-code-review`, `systematic-debugging` | obra/superpowers | `22f0b463` (v7.0.2) | `council` (the first two); `systematic-debugging` has no module yet |
+| `verification-before-completion`, `receiving-code-review`, `systematic-debugging` | obra/superpowers | `22f0b463` (v7.0.2) | `council` (the first two); `triage` takes `systematic-debugging` |
 | `differential-review` | trailofbits/skills | `e4dd0bb5` | `council` |
 | `grilling`, `grill-me` | mattpocock/skills | `4ae2317d` | `grill` |

@@ -2,10 +2,10 @@
 id: AS-PROGRAM
 kind: roadmap
 title: Roadmap
-summary: "The refactor to fully custom skill modules (owner, 2026-11-12): M0 removes the linked upstream skills and sets the module layout; then workbench, council, multiplex, wiki, grill, design-system, a site-system project skill in that repository, and frugal, each written in Luckgrid's own words from a reference list of reviewed skills. The earlier items P1 to P3 are folded into the modules."
+summary: "The refactor to fully custom skill modules (owner, 2026-11-12): M0 removes the linked upstream skills and sets the module layout; then workbench, council, multiplex, wiki, grill, design-system, a site-system project skill in that repository, frugal and triage, each written in Luckgrid's own words from a reference list of reviewed skills. The earlier items P1 to P3 are folded into the modules."
 status: active
 created: 2026-11-12
-updated: 2026-11-12  # second round (owner): council, multiplex, design-system and site-system; before that, the custom-modules refactor (owner, 2026-11-12); before that, P1 to P3 from the wiki's first version
+updated: 2026-11-12  # third round (owner): the open questions answered, the order, triage; before that, second round (owner): council, multiplex, design-system and site-system; before that, the custom-modules refactor (owner, 2026-11-12); before that, P1 to P3 from the wiki's first version
 related: [AS-STATE, AS-RES-SKILL-REFERENCES, AS-REC-2026-11-12-SKILL-MODULES, GW-ADR-0014, GW-ARCH-WORKBENCH-AGENT-WORKFLOWS, AS-ARCH-SKILL-SOURCES, AS-ARCH-GUEST-INSTALL]
 ---
 
@@ -31,6 +31,25 @@ The owner's feedback, word for word, is in the [record](records/2026-11-12-skill
 - **`council`, not `peer-review`:** review and remediation by several models, each with a different lens, in rounds. The owner chose `council` over `audit` (which reads as a one-off inspection), `crosscheck` and `peer-review`.
 - **`multiplex`, not `herdr`:** a name of Luckgrid's own that doesn't clash with herdr's `herdr` skill, for multiplexers and session managers of any kind, with herdr as the default because Workbench uses it.
 - **Two new modules:** `design-system` and `site-system`, focused on those repositories' decisions and architecture, so work on them stays on its rails. `site-system` is a **project skill in the site-system repository** (owner's choice), since that repository is private; `design-system` is public and goes here.
+
+### Third round (owner, 2026-11-12)
+
+The owner answered the open questions ([record](records/2026-11-12-skill-modules.md#third-round-the-open-questions-answered-2026-11-12)):
+
+- **The wiki template in public:** `wiki` carries the template's rules in its own words; wiki-nest's `wiki-structure.md` stays the authority it points to.
+- **The order:** the `site-system` project skill first, with `design-system`'s rules for consuming releases folded in, then the rest ([order](#order)).
+- **`systematic-debugging`:** the owner's words: "how about a broader triage skill module with debug being a part of it, alongside other triage/debug skills". That is M9, `triage`.
+
+## Order
+
+Module numbers are IDs and don't change; the build order is:
+
+1. **M7 `site-system`**, now. It is a project skill in the site-system repository, so agents there get it once it merges, without waiting for Workbench's install step, and it helps the site prototypes due this month. Until M6 exists, it carries `design-system`'s rules for consuming a release.
+2. **M0**, the module foundation.
+3. **M1 `workbench`**, then **M2 `council`**: what Workbench's F1 needs.
+4. **M3 `multiplex`**, **M4 `wiki`**, **M5 `grill`**.
+5. **M6 `design-system`**; M7 then points to it instead of carrying its rules.
+6. **M8 `frugal`**, **M9 `triage`**.
 
 ## The module shape
 
@@ -128,6 +147,8 @@ Working in Luckgrid's wikis, which follow one shared template. Modes:
 - **lint:** relative links, anchors, `related:` IDs, duplicate IDs, rumdl;
 - **query:** answer from the wiki's pages, citing them; qmd when it is installed, else `rg`.
 
+**The template in public** (owner, 2026-11-12): the module carries the rules of Luckgrid's wiki template in its own words, and points to wiki-nest's `wiki-structure.md` as their authority. Where they disagree, `wiki-structure.md` decides and the module is corrected.
+
 **Learns from:** Karpathy's LLM wiki pattern (raw sources kept unchanged, a wiki the agent maintains, a schema it follows); kfchou/wiki-skills (lint, audit, merge); vanillaflava/llm-wiki-skills (crystallize, integrate); tobi/qmd's search-then-retrieve loop; Luckgrid's wiki template.
 
 ## M5: `grill`
@@ -158,9 +179,10 @@ Work on, or with, luckgrid/design-system (public), so changes stay on its rails.
 
 ## M7: `site-system` (a project skill in site-system)
 
-Lives in the private site-system repository, not here (owner's choice): in `.agents/skills/site-system/` (read by Codex and Cursor), with `.claude/skills/site-system` linking to it for Claude Code. It loads when an agent works in that repository and changes with the code it describes. This repository lists it, and its `CREDITS.md` follows the same rules.
+Built first (owner, 2026-11-12). Lives in the private site-system repository, not here (owner's choice): in `.agents/skills/site-system/` (read by Codex and Cursor), with `.claude/skills/site-system` linking to it for Claude Code. It loads when an agent works in that repository and changes with the code it describes. This repository lists it, and its `CREDITS.md` follows the same rules.
 
 - **Rails:** site-system's README rules (no secrets; no build output in Git; pins only; agents build candidates, only the owner seals, approves, uploads and changes DNS; Zola wrapped, not replaced, with Tera 2 templates; builds write only inside `.build/`; the gate before review; records by the wiki template), BI-ADR-0024's platform decision, and the owner's numbered decisions in its step records.
+- **Until M6:** a reference with `design-system`'s rules for consuming a release (the pin, release archives not repository paths, the layers and the public hooks), replaced by a pointer to `design-system` once M6 exists.
 - **Modes:** orient (README, wiki STATE, the step records); build and check (`scripts/check.sh`, `site-kit` and its stages); templates (Tera 2 rules); design system (takes `design-system`'s consume mode and the pin); release (what an agent may and may not do).
 - **Because it is a project skill:** an agent can edit it in its own working tree, so a session uses the committed version, and changes to it go through review like code.
 
@@ -179,6 +201,19 @@ Saving tokens without losing substance. Instructions first; tools only when inst
 
 **Tools, later and elsewhere:** admitting rtk (a binary with agent hooks; its telemetry is off by default) and qmd (an npm package that downloads local models) to the guest are separate items for Workbench's package catalog, each with its own review. Neither CLI of caveman or ponytail is installed: they are not needed for the instructions, and caveman's CLI sends usage stats by default.
 
+## M9: `triage`
+
+The owner's idea (2026-11-12): a broader triage module, with debugging part of it, alongside other triage and debugging skills. It takes over `systematic-debugging`'s job when M0 removes it. Modes:
+
+- **intake:** what came in (an issue, a PR, an alert, a failing check, a report); its impact; whether it reproduces; duplicates and links; who decides. Nothing is labelled, closed or commented on without the owner's word.
+- **debug:** build a feedback loop that fails first; reproduce and minimise; one hypothesis at a time, each tested; instrument; the root cause before any fix; the fix once, in the shared code, after reading every caller; a regression check; the instrumentation removed. After a set number of failed hypotheses, stop and report what was ruled out.
+- **isolate:** bisect commits; find which test pollutes another; timing and flaky failures, waited on by condition, not by sleeping.
+- **queue:** go through open issues, PRs and dependency bumps: categories, duplicates, stale items, linked PRs, risk. Present the plan, and apply it only on the owner's word.
+- **incident:** stop and keep the evidence word for word, contain, then record; never retry automatically.
+- **hand-off:** a brief another agent can act on, or the fix sent to `council`.
+
+**Learns from:** obra/superpowers `systematic-debugging` (with its root-cause tracing, condition-based waiting and polluter-finding helpers, read as ideas); mattpocock/skills `diagnosing-bugs` and `triage`; getsentry/skills `find-bugs` and `triage-frontend-issues` (plan, then apply on approval); rtk-ai/rtk's `issue-triage` and `pr-triage`; DietrichGebert/ponytail `ponytail-debt` (tracking deliberate shortcuts); Luckgrid's stop-on-surprise rule and incident records.
+
 ## Each module's done-when
 
 - `SKILL.md`, its references and `CREDITS.md`; `check.sh` passes;
@@ -190,9 +225,7 @@ Saving tokens without losing substance. Instructions first; tools only when inst
 
 ## Open questions for the owner
 
-- **The wiki template in public:** `wiki` carries the rules of Luckgrid's wiki template, which is kept in private wiki-nest. Publishing them in this public repository is recommended (they hold nothing private), but it is the owner's call.
-- **The order of M4 to M8:** as written, `wiki` before `grill`, since `grill` writes through it, then `design-system` and `site-system`, and `frugal` last. `design-system` and `site-system` could come right after M0, since the site prototypes are due this month; `frugal` could come early if token costs are pressing.
-- **`systematic-debugging`:** it leaves with M0 and no module takes it. It could become a `debug` module later, or a mode of `council`.
+None open: the three from the first rounds were answered on 2026-11-12 ([third round](#third-round-owner-2026-11-12)).
 
 ## After the modules
 
