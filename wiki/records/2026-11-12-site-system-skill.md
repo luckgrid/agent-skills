@@ -28,10 +28,10 @@ The roadmap's [M7](../program.md#m7-site-system-a-project-skill-in-site-system) 
 
 ## Checks
 
-- **site-system's gate** passed at the skill's commit in the cloud session on Rust 1.97.0, not the pinned 1.99.1, which the session couldn't fetch; the owner's `wb check` runs it on the pin.
+- **site-system's gate** passed at the skill's commit in the cloud session on Rust 1.97.0, not the pinned 1.99.1, which the session couldn't fetch; the owner's `wb check` then passed it on the pin.
 - **The skill's own checks:** the front matter meets the specification's limits (a 502-character description), every relative link and anchor resolves one level deep, and the `.claude` link resolves.
 - **A release built from a plain clone** at the skill's commit had the same digests as before the skill.
 
 ## Next
 
-The owner's `wb check site-system <head>`, then in the guest a fresh Claude Code pane and a fresh Codex pane listing `site-system`; an independent review by a different model, from a prompt saved in the owner's project; the merge on the owner's word.
+Done the same evening, owner-reported: `wb check` passed on the pinned toolchain, and a fresh Claude Code pane and a fresh Codex pane in the guest both list `site-system`, so Claude Code follows the linked skill folder. Next: an independent review by a different model, from a prompt saved in the owner's project; the merge on the owner's word.
