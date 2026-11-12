@@ -1,0 +1,10 @@
+[global]
+# Allow long prose lines, inline HTML, and bold run-in labels in wiki pages.
+disable = ["MD013", "MD033", "MD036"]
+# upstream/ holds other people's skills, read as data and never reformatted.
+exclude = [".git", "upstream"]
+flavor = "gfm"
+
+# Wiki pages may carry a frontmatter title and repeat it as their single H1.
+[MD025]
+front-matter-title = ""
