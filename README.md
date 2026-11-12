@@ -15,9 +15,13 @@ Skills for this owner's own workflows and methods are written here. Public skill
 | `differential-review` | Security-focused review of a diff: risk triage, history, blast radius, test gaps | linked: trailofbits/skills |
 | `grill-me`, `grilling` | Rounds of questions, each with a recommended answer, to settle a plan or decision (`grill-me` is invoked explicitly and calls `grilling`) | linked: mattpocock/skills |
 
+## Wiki
+
+This README is the entry point and holds the rules. The [wiki](wiki/README.md) holds the details: how the repository works and why, where it stands ([STATE](wiki/records/STATE.md)), the [roadmap](wiki/program.md), and dated records of each change. Records follow Luckgrid's shared wiki template (see `wiki/README.md`), and quote evidence and the owner's decisions word for word. Every change is recorded, review rounds included, so nothing from a session goes unrecorded.
+
 ## No secrets
 
-This repository is public. It holds no hostnames, user names, account names, email addresses, IPs, keys or tokens, and paths are written as `~/…`. Keep it that way.
+This repository is public. It holds no hostnames, user names, account names, email addresses, IPs, keys or tokens, and paths are written as `~/…`. Keep it that way, in the wiki too.
 
 ## Linked upstream skills
 
