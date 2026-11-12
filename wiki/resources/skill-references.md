@@ -5,7 +5,7 @@ title: Skill references
 summary: "The skills and tools each custom module learns from, with the repository, the commit read, the licence, what it contributes, and how it may be used: ideas only, since every module is written in Luckgrid's own words (owner, 2026-11-12)."
 status: active
 created: 2026-11-12
-updated: 2026-11-12  # third round: triage; before that, second round: council, multiplex, design-system, site-system
+updated: 2026-11-12  # site-system's sources as read for M7; before that, third round: triage; before that, second round: council, multiplex, design-system, site-system
 related: [AS-PROGRAM, AS-REC-2026-11-12-SKILL-MODULES, AS-RESOURCES]
 ---
 
@@ -93,13 +93,21 @@ Re-read an entry at a new commit before a module learns anything new from it.
 
 ## `site-system` (M7, a project skill in site-system)
 
+Read on 2026-11-12 for the skill's first version. The private sources' commits are in site-system's own record of the skill, not here.
+
 | Source | Licence | Commit | What it contributes |
 | --- | --- | --- | --- |
-| site-system's README, wiki, STATE and step records (private) | Luckgrid's | `main` when M7 starts | The rails (README rules 1 to 8) and the owner's numbered decisions |
-| wiki-nest's BI-ADR-0024 and backend-infrastructure guides 02, 06 and the Pages fallback (private) | Luckgrid's | `main` when M7 starts | The platform decision, the builder, release verification and the launch path |
-| Zola 0.23 and Tera 2 documentation | MIT (both projects) | the versions site-system pins | Templates, content, configuration |
-| Cloudflare Pages documentation | Cloudflare's | read when M7 starts | Headers, redirects and limits for the launch path |
-| [spillwavesolutions/creating-zola-static-sites-plugin](https://github.com/spillwavesolutions/creating-zola-static-sites-plugin) | MIT | `d8ec459d` | A Zola skill's shape: quick start, references per topic. Not Tera 2–specific, so its template advice is checked against site-system's rule 5 |
+| site-system's README, wiki, STATE, step records, reviews and code (private) | Luckgrid's | in site-system's record | The rails (README rules 1 to 8), the owner's numbered decisions, the commands, stages and refusals, and what past review findings show goes wrong |
+| wiki-nest's BI-ADR-0024, the decisions it cites, backend-infrastructure guides 02 and 06, the Pages fallback guide and `wiki-structure.md` (private) | Luckgrid's | in site-system's record | The platform decision, the builder and verification procedure, the launch list, the wiki template; the cited decisions are proposed and the guides drafts, and the skill says so |
+| Workbench's daily use and agent workflows, GW-ADR-0010, 0011 and 0014 (luckgrid/workstation, private for now) | Luckgrid's | in site-system's record | Where each harness reads project skills, what only the owner does in the guest, the `wb` commands |
+| [luckgrid/design-system](https://github.com/luckgrid/design-system) README, `docs/`, `release/`, the classification files | MIT | `09199f7` (`0.1.0-preview.1`) | The consumer rules M7 carries until M6: the archive, the layers, public roles and internal references, the hooks, browser support |
+| [getzola/zola](https://github.com/getzola/zola) `CHANGELOG.md` 0.23.0 to 0.23.6, and the release binary run on test templates | EUPL-1.2 (code since 0.22) | `v0.23.6` (`1969d846`) | Components in place of shortcodes, content templated first, hygiene, `get_page` and `get_section`; one missing level allowed, two an error |
+| [Keats/tera](https://github.com/Keats/tera) `MIGRATION.md` and `filters.rs` | MIT | `v2.4.0` (`6ead3c0f`), the version Zola 0.23.6 locks | Tera 2: components and calls, undefined values, optional chaining, spread, removed and renamed filters |
+| [Agent Skills specification](https://agentskills.io/specification) | CC-BY-4.0 (docs) | read 2026-11-12 | Front-matter limits and progressive disclosure |
+| Claude Code's and Codex's skills documentation | their vendors' | read 2026-11-12 | Project skill folders (`.claude/skills`, `.agents/skills`), and that both follow a linked skill folder |
+| moon's documentation | MIT (moon) | read 2026-11-12, checked against the repository's moon 2.6.5 tasks | Workspace-relative inputs, same-project task names |
+| Cloudflare Pages documentation (limits) | Cloudflare's | read 2026-11-12 | Unchanged limits for the launch path |
+| [spillwavesolutions/creating-zola-static-sites-plugin](https://github.com/spillwavesolutions/creating-zola-static-sites-plugin) | MIT | `d8ec459d` | Shape only: a router with a table of which reference to read for which task. Its Tera advice is Tera 1 (macros, shortcodes, imports) and isn't used |
 
 ## `frugal` (M8)
 

@@ -5,13 +5,13 @@ title: State
 summary: "Where agent-skills stands: nine skills on main (two written here, one copy, six linked), check.sh passing with submodules; nothing installed in the guest yet; next, the refactor to custom skill modules M0 to M9 (owner, 2026-11-12), the site-system project skill first; the decisions in force."
 status: active
 created: 2026-11-12
-updated: 2026-11-12  # the custom-modules plan (owner, 2026-11-12)
+updated: 2026-11-12  # M7 in progress (site-system#9); before that, the custom-modules plan (owner, 2026-11-12)
 related: [AS-REC-2026-11-12-SKILL-MODULES, AS-RES-SKILL-REFERENCES, AS-PROGRAM, AS-ARCH-SKILL-SOURCES, AS-ARCH-GUEST-INSTALL, GW-ADR-0014]
 ---
 
 # State
 
-**As of 2026-11-12, `main` at `9ff8b6c`.** Results are as their records give them.
+**As of 2026-11-12, `main` at `6b02f37`** (M7's line; the rest as written at `9ff8b6c`). Results are as their records give them.
 
 ## Where it stands
 
@@ -21,13 +21,13 @@ related: [AS-REC-2026-11-12-SKILL-MODULES, AS-RES-SKILL-REFERENCES, AS-PROGRAM, 
 | `scripts/check.sh` | `ok: 9 skills checked (6 linked from 3 upstream repositories)` with the submodules at their pinned commits, before agent-skills#2 merged on 2026-11-11 ([record](2026-11-10-linked-upstream-skills.md#the-independent-reviews-wb-06-and-the-merge)); agent-skills#3 and #4 changed only the README and the wiki |
 | In the guest | **Nothing installed.** Workbench's U16 is built but inert until this repository's commit and the skills CLI are pinned; before a commit with linked skills is pinned, F1 changes U16 ([guest install](../architecture/guest-install.md)). The guest's read-only clone is on `main` at `cfa2c6a` (Workstation's guest home layout record, 2026-11-12) |
 | The wiki | Added on 2026-11-12 ([record](2026-11-12-wiki.md)) |
-| The plan | Fully custom skill modules, planned on 2026-11-12 ([record](2026-11-12-skill-modules.md), [roadmap](../program.md)); nothing built yet |
+| The plan | Fully custom skill modules, planned on 2026-11-12 ([record](2026-11-12-skill-modules.md), [roadmap](../program.md)); M7 in progress, nothing else built yet |
 
 ## Open
 
 | Item | Gate | Page |
 | --- | --- | --- |
-| M7: `site-system`, a project skill in the site-system repository, with `design-system`'s consume rules until M6 | **First** (owner, 2026-11-12) | [M7](../program.md#m7-site-system-a-project-skill-in-site-system) |
+| M7: `site-system`, a project skill in the site-system repository, with `design-system`'s consume rules until M6 | **In progress:** written on site-system#9 (draft, private), with the owner's answers to its four questions ([record](2026-11-12-site-system-skill.md)). Next: the owner's `wb check` and guest check, an independent review, the merge on the owner's word | [M7](../program.md#m7-site-system-a-project-skill-in-site-system) |
 | M0: remove the linked skills; `check.sh` and the README for modules | After M7 | [M0](../program.md#m0-the-module-foundation) |
 | M1: `workbench` (replaces `wb-guest-rules`, `wb-herdr`) | After M0 | [M1](../program.md#m1-workbench) |
 | M2: `council` (takes in `wb-review`, `wb-remediate`; reviewers with lenses, in rounds) | After M1; Workbench's step F1 needs it | [M2](../program.md#m2-council) |
