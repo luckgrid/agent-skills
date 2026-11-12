@@ -12,6 +12,8 @@ derived_from: GW-ADR-0014
 
 # Skill sources
 
+> **Planned change (owner, 2026-11-12):** the repository moves to fully custom skill modules written in Luckgrid's own words, and the linked upstream skills are removed in the first refactor PR (M0). Until M0 merges, this page describes the repository as it is. See the [roadmap](../program.md#the-direction-owner-2026-11-12).
+
 The repository holds Agent Skills shared by the Workbench guest's harnesses: Claude Code, Codex and Cursor. Each skill is a folder `skills/<name>/` with a `SKILL.md` in the [Agent Skills format](https://agentskills.io/specification): YAML front matter with `name` and `description`, then the instructions. That it is one repository, public, and installed at a pinned commit comes from Groundwork's GW-ADR-0014 decision 1 (proposed; the owner chose "public" on 2026-11-07). The rules for adding a skill are in the root README; this page says how the pieces fit and why.
 
 ## Three kinds of skill

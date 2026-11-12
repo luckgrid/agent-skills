@@ -37,6 +37,8 @@ Groundwork's read of the CLI's code (GW-RES-0007, 2026-11-11) agrees. It also fo
 
 ## What U16 needs before linked skills are pinned
 
+> **Planned change (owner, 2026-11-12):** M0 removes the linked skills, so none of this section will be needed: U16's single `skills add` on a `git archive` export installs every module ([roadmap](../program.md#m0-the-module-foundation)).
+
 As built, U16 runs the CLI once on a `git archive` export. That export has no submodules, so it would install only the skills written here. Before a commit with linked skills is pinned, Workbench's agent workflows step F1 changes U16 to:
 
 1. put the submodules' pinned content in the export;

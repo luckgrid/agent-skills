@@ -5,11 +5,13 @@ title: Sources
 summary: "The format, tools, upstream repositories and Luckgrid pages behind agent-skills, with the versions and commits they were read at."
 status: active
 created: 2026-11-12
-updated: 2026-11-12
-related: [AS-ARCH-SKILL-SOURCES, AS-ARCH-GUEST-INSTALL, GW-ADR-0014]
+updated: 2026-11-12  # became a folder, with skill references beside it
+related: [AS-ARCH-SKILL-SOURCES, AS-ARCH-GUEST-INSTALL, GW-ADR-0014, AS-RES-SKILL-REFERENCES]
 ---
 
 # Sources
+
+The skills and tools each planned module learns from are listed in [skill references](skill-references.md). This page holds the format, the tools and the Luckgrid pages behind the repository as it is.
 
 ## Format and tools
 
@@ -30,9 +32,9 @@ Pinned commits and digests are in `upstream.toml`, which decides; this table is 
 | [trailofbits/skills](https://github.com/trailofbits/skills) | CC-BY-SA-4.0 | `e4dd0bb5` | `differential-review` |
 | [mattpocock/skills](https://github.com/mattpocock/skills) | MIT | `4ae2317d` | `grilling`, `grill-me` |
 
-## Read for the thin herdr skill, nothing copied
+## Read for the thin herdr skill, nothing copied (2026-11-11)
 
-From the 2026-11-11 review of herdr skills listed on skills.sh, read at pinned commits with nothing installed, which led to the owner's decisions ([program](program.md#p1-a-thin-herdr-skill)):
+From the 2026-11-11 review of herdr skills listed on skills.sh, read at pinned commits with nothing installed, which led to the owner's decisions ([program](../program.md#p1-a-thin-herdr-skill)):
 
 - callstack/agent-device `skills/dogfood` (MIT, `5a836c05`): the skill's shape;
 - whamp/skills (MIT, `c91b3414`): the maintenance block;

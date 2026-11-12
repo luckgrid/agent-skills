@@ -8,3 +8,4 @@ Dated episodes, named for the date their first content happened. Where the repos
 - [2026-11-10-linked-upstream-skills.md](2026-11-10-linked-upstream-skills.md): agent-skills#2, six skills linked from their authors, `check.sh`'s new checks, the skills CLI test, the reviews, the herdr skill decision and WB-06.
 - [2026-11-12-workstation-links.md](2026-11-12-workstation-links.md): agent-skills#3, links into Workstation, and the owner's answer to CR-08.
 - [2026-11-12-wiki.md](2026-11-12-wiki.md): this wiki, added.
+- [2026-11-12-skill-modules.md](2026-11-12-skill-modules.md): planning the custom skill modules: the ask, the owner's choices, what the records and 20 repositories hold, and the measurements.

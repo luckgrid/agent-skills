@@ -9,9 +9,9 @@ It follows Luckgrid's shared wiki template, the wiki structure kept in luckgrid/
 1. [records/STATE.md](records/STATE.md): where the repository stands, what is open, and the decisions in force.
 2. [architecture/skill-sources.md](architecture/skill-sources.md): the three kinds of skill (written here, copied, linked), `upstream.toml`, and what `scripts/check.sh` proves.
 3. [architecture/guest-install.md](architecture/guest-install.md): how the Workbench guest is to install these skills, what the skills CLI was tested to do, and what has to change before linked skills are pinned.
-4. [program.md](program.md): the roadmap.
+4. [program.md](program.md): the roadmap, now the refactor to custom skill modules.
 5. [records/README.md](records/README.md): the dated history, one record per episode.
-6. [resources.md](resources.md): the sources behind it.
+6. [resources](resources/README.md): the sources behind it, and the [skill references](resources/skill-references.md) each planned module learns from.
 
 ## Which page decides what
 
@@ -22,11 +22,12 @@ It follows Luckgrid's shared wiki template, the wiki structure kept in luckgrid/
 | The review-and-remediate workflow these skills serve (step F1 onwards) | Workbench's agent workflows (Workstation) |
 | How a linked, copied or own skill is recorded and checked here | [architecture/skill-sources.md](architecture/skill-sources.md) |
 | What the guest's install step needs from this repository | [architecture/guest-install.md](architecture/guest-install.md) |
+| Which skills each planned module learns from, and under which licence | [resources/skill-references.md](resources/skill-references.md) |
 | What is open and what is next | [records/STATE.md](records/STATE.md), then [program.md](program.md) |
 
 ## Writing standard
 
-- Non-README pages carry `id`, `kind`, `title`, `summary`, `status`, `created`, `updated` and `related` (IDs, never slugs or paths). IDs here use the `AS-` prefix: `AS-ARCH-…`, `AS-REC-…`, `AS-PROGRAM`, `AS-STATE`, `AS-RESOURCES`. An ID never changes when a page moves.
+- Non-README pages carry `id`, `kind`, `title`, `summary`, `status`, `created`, `updated` and `related` (IDs, never slugs or paths). IDs here use the `AS-` prefix: `AS-ARCH-…`, `AS-REC-…`, `AS-PROGRAM`, `AS-STATE`, `AS-RESOURCES`, `AS-RES-…`. An ID never changes when a page moves.
 - **Status lives in one place:** [STATE](records/STATE.md). Other pages link to it instead of restating it.
 - **Records keep their history.** A dated record is named for the date its first content happened and keeps its wording; corrections go in a later record or a dated note. Evidence (check output, hashes, the owner's words) is quoted word for word.
 - **Label evidence.** Tell apart the owner's decisions, results the owner reported, results a session ran, upstream claims and proposals. A proposal is not acceptance.
