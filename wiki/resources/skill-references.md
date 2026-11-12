@@ -5,7 +5,7 @@ title: Skill references
 summary: "The skills and tools each custom module learns from, with the repository, the commit read, the licence, what it contributes, and how it may be used: ideas only, since every module is written in Luckgrid's own words (owner, 2026-11-12)."
 status: active
 created: 2026-11-12
-updated: 2026-11-12
+updated: 2026-11-12  # second round: council, multiplex, design-system, site-system
 related: [AS-PROGRAM, AS-REC-2026-11-12-SKILL-MODULES, AS-RESOURCES]
 ---
 
@@ -24,10 +24,16 @@ Re-read an entry at a new commit before a module learns anything new from it.
 | this repository's `wb-guest-rules`, `wb-herdr` | Apache-2.0 (Luckgrid's) | `9ff8b6c` | The guest's house rules, and herdr socket commands handed to the owner |
 | Workbench's agent workflows and GW-ADR-0014 (luckgrid/workstation, private for now) | Luckgrid's | `30b10df` | The rules for agents in the guest, F1 and the hand-off |
 
-## `peer-review` (M2)
+## `council` (M2)
 
 | Source | Licence | Commit | What it contributes |
 | --- | --- | --- | --- |
+| [microsoft/vscode-team-kit](https://github.com/microsoft/vscode-team-kit) `model-council/skills/council-review` | MIT | `60a489a9` | Model-pinned reviewers in parallel, a change summary instead of raw diffs, consensus synthesis, an anonymized cross-review, saving findings to a file |
+| dotnet/fsharp `review-council` | MIT (the repository's) | listing only; not in the tree at `59c74772` | A briefing pack every reviewer gets word for word; dimensions × models; dedupe and false-positive filtering; speculation marked low confidence |
+| [Mozilla.ai's Star Chamber](https://blog.mozilla.ai/the-star-chamber-multi-llm-consensus-for-code-quality/) (claude-pragma) | not read (the repository wasn't reachable) | the blog post | Consensus across providers: where models agree, disagree and raise unique points; a debate mode in rounds |
+| [laststance/skills](https://github.com/laststance/skills) `x-agents-cross-review` | MIT | listing only; not in the repository at `a6cfb827` | Every agent reviews the full scope, no splitting, each through its own perspective; one unified report |
+| ktaletsk/council | **no licence** | `bf3c7954` | The same review prompt across Claude Code, Codex, OpenCode and Cursor, then one synthesized report |
+| mikeng-io/agent-skills `deep-council` | **no licence** | `f3460300` | Bridges to several model families; scope resolved once, up front |
 | [obra/superpowers](https://github.com/obra/superpowers) `requesting-code-review` | MIT | `22f0b463` (v7.0.2) | The reviewer gets a crafted context, never the author's session; review early and often |
 | obra/superpowers `receiving-code-review` | MIT | `22f0b463` | Read, restate, verify against the code, evaluate, then respond or push back; one item at a time |
 | obra/superpowers `verification-before-completion` | MIT | `22f0b463` | Run the check and read its output before claiming done |
@@ -38,10 +44,13 @@ Re-read an entry at a new commit before a module learns anything new from it.
 | Anthropic's code-review plugin for Claude Code | **proprietary** (anthropics/claude-code's terms); not in that repository at `927b6649` | — | Rated the top review skill online: multiple reviewers and filtering false positives before reporting |
 | Luckgrid's review prompts and review records (project notes; site-system's and Workstation's records) | Luckgrid's | — | Severities, finding IDs, at most ten findings, dispositions, verbatim review records, rechecks |
 
-## `herdr` (M3)
+## `multiplex` (M3)
 
 | Source | Licence | Commit | What it contributes |
 | --- | --- | --- | --- |
+| Workbench's session backends page (luckgrid/workstation, private for now) | Luckgrid's | `30b10df` | The backends (herdr default, tmux fallback, TUIOS evaluating), what a backend must do (R1 to R8), and what a TUIOS trial keeps off |
+| tmux's manual | ISC | Fedora's package | Panes, `send-keys`, `capture-pane`; no agent status |
+| [TUIOS](https://tuios.dev/) documentation | MIT | 0.12.0, read 2026-11-04 (Workbench) | `send-keys`, `capture-pane`, `wait-for`, a JSON protocol on its socket; agent integrations |
 | [herdrdev/herdr](https://github.com/herdrdev/herdr) `skills/herdr` (also `herdr --skill`) | Apache-2.0 | `ee5bfb50` (v0.9.5 is `2ecf19a`) | The authority for command syntax; the `HERDR_ENV=1` guard |
 | [callstack/agent-device](https://github.com/callstack/agent-device) `skills/dogfood` | MIT | `2deb909e` (H1 read `5a836c05`) | The thin-skill shape: check the environment, then defer to the tool's own help |
 | [whamp/skills](https://github.com/whamp/skills) `engineering/herdr` | MIT | `b43491ae` (H1 read `c91b3414`) | Sidecars for persistent, observable work; the maintenance block |
@@ -71,7 +80,28 @@ Re-read an entry at a new commit before a module learns anything new from it.
 | mattpocock/skills `engineering/domain-modeling` | MIT | `4ae2317d` | Challenge terms against the glossary, sharpen fuzzy language, test with scenarios, check against code, record decisions as they settle |
 | obra/superpowers `brainstorming` | MIT | `22f0b463` | Settling a design before building |
 
-## `frugal` (M6)
+## `design-system` (M6)
+
+| Source | Licence | Commit | What it contributes |
+| --- | --- | --- | --- |
+| [luckgrid/design-system](https://github.com/luckgrid/design-system) README, `docs/architecture/`, `docs/browser-support.md`, the classification files | MIT | `09199f7` | The rails: release archives, the cascade layers, tokens and themes, the hook vocabulary, classless base, `ds-check`, browser support |
+| [Design Tokens Format Module 2025.10](https://www.designtokens.org/tr/2025.10/) (DTCG) | W3C Community Final Specification Agreement | 2025.10, the first stable version | The vendor-neutral token format, if the design system exchanges tokens with tools |
+| WCAG 2.2 (W3C) | W3C | 2.2 | Contrast, focus, target sizes for the base and primitives |
+| MDN on CSS cascade layers | CC-BY-SA-2.5 (MDN's prose) | — | How layer order and unlayered styles interact |
+| [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) `web-design-guidelines` | MIT by its README; no licence file | `1a2c79d4` | A UI review against published interface guidelines, reported as `file:line`. It fetches the guidelines live at each run, so ideas only |
+| community `design-system` skills (caidanw/skills, community-access/accessibility-agents, supercent-io/skills-template) | various | listings only | Token layering, accessibility baselines; to be read at a commit before anything is taken |
+
+## `site-system` (M7, a project skill in site-system)
+
+| Source | Licence | Commit | What it contributes |
+| --- | --- | --- | --- |
+| site-system's README, wiki, STATE and step records (private) | Luckgrid's | `main` when M7 starts | The rails (README rules 1 to 8) and the owner's numbered decisions |
+| wiki-nest's BI-ADR-0024 and backend-infrastructure guides 02, 06 and the Pages fallback (private) | Luckgrid's | `main` when M7 starts | The platform decision, the builder, release verification and the launch path |
+| Zola 0.23 and Tera 2 documentation | MIT (both projects) | the versions site-system pins | Templates, content, configuration |
+| Cloudflare Pages documentation | Cloudflare's | read when M7 starts | Headers, redirects and limits for the launch path |
+| [spillwavesolutions/creating-zola-static-sites-plugin](https://github.com/spillwavesolutions/creating-zola-static-sites-plugin) | MIT | `d8ec459d` | A Zola skill's shape: quick start, references per topic. Not Tera 2–specific, so its template advice is checked against site-system's rule 5 |
+
+## `frugal` (M8)
 
 | Source | Licence | Commit | What it contributes |
 | --- | --- | --- | --- |
@@ -87,6 +117,6 @@ Kept here so nothing about them is lost. Their review is in the [linked upstream
 
 | Skill | Upstream | Commit | Feeds |
 | --- | --- | --- | --- |
-| `verification-before-completion`, `receiving-code-review`, `systematic-debugging` | obra/superpowers | `22f0b463` (v7.0.2) | `peer-review` (the first two); `systematic-debugging` has no module yet |
-| `differential-review` | trailofbits/skills | `e4dd0bb5` | `peer-review` |
+| `verification-before-completion`, `receiving-code-review`, `systematic-debugging` | obra/superpowers | `22f0b463` (v7.0.2) | `council` (the first two); `systematic-debugging` has no module yet |
+| `differential-review` | trailofbits/skills | `e4dd0bb5` | `council` |
 | `grilling`, `grill-me` | mattpocock/skills | `4ae2317d` | `grill` |

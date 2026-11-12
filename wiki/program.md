@@ -2,10 +2,10 @@
 id: AS-PROGRAM
 kind: roadmap
 title: Roadmap
-summary: "The refactor to fully custom skill modules (owner, 2026-11-12): M0 removes the linked upstream skills and sets the module layout; then workbench, peer-review, herdr, wiki, grill and frugal, each written in Luckgrid's own words from a reference list of reviewed skills. The earlier items P1 to P3 are folded into the modules."
+summary: "The refactor to fully custom skill modules (owner, 2026-11-12): M0 removes the linked upstream skills and sets the module layout; then workbench, council, multiplex, wiki, grill, design-system, a site-system project skill in that repository, and frugal, each written in Luckgrid's own words from a reference list of reviewed skills. The earlier items P1 to P3 are folded into the modules."
 status: active
 created: 2026-11-12
-updated: 2026-11-12  # the custom-modules refactor (owner, 2026-11-12); before that, P1 to P3 from the wiki's first version
+updated: 2026-11-12  # second round (owner): council, multiplex, design-system and site-system; before that, the custom-modules refactor (owner, 2026-11-12); before that, P1 to P3 from the wiki's first version
 related: [AS-STATE, AS-RES-SKILL-REFERENCES, AS-REC-2026-11-12-SKILL-MODULES, GW-ADR-0014, GW-ARCH-WORKBENCH-AGENT-WORKFLOWS, AS-ARCH-SKILL-SOURCES, AS-ARCH-GUEST-INSTALL]
 ---
 
@@ -21,8 +21,16 @@ The owner's choices the same day, when asked:
 
 - **Text:** every module is written in Luckgrid's own words. No upstream text is copied; each module credits the skills it learned from, at pinned commits.
 - **Upstream:** the linked upstream skills, their submodules and `upstream.toml` are removed in the first refactor PR (M0). The six skills stay listed as references.
-- **The review module's name:** `peer-review`, which doesn't collide with Claude Code's and Codex's built-in `/review`.
+- **The review module's name:** `peer-review` at first; renamed `council` in the second round (below).
 - **Tools:** `frugal` ships as instructions first and uses rtk or qmd only where they are already installed. Admitting either tool to the guest is a separate item in Workbench's package catalog.
+
+### Second round (owner, 2026-11-12)
+
+The owner's feedback, word for word, is in the [record](records/2026-11-12-skill-modules.md#second-round-the-owners-feedback-2026-11-12). It changed three things:
+
+- **`council`, not `peer-review`:** review and remediation by several models, each with a different lens, in rounds. The owner chose `council` over `audit` (which reads as a one-off inspection), `crosscheck` and `peer-review`.
+- **`multiplex`, not `herdr`:** a name of Luckgrid's own that doesn't clash with herdr's `herdr` skill, for multiplexers and session managers of any kind, with herdr as the default because Workbench uses it.
+- **Two new modules:** `design-system` and `site-system`, focused on those repositories' decisions and architecture, so work on them stays on its rails. `site-system` is a **project skill in the site-system repository** (owner's choice), since that repository is private; `design-system` is public and goes here.
 
 ## The module shape
 
@@ -64,31 +72,48 @@ Replaces `wb-guest-rules` and `wb-herdr`. The guest's house rules, always loaded
 
 **Learns from:** today's two skills (Luckgrid's own); Workbench's agent workflows and GW-ADR-0014. **Follow-up in Workstation:** pages that name `wb-guest-rules` or `wb-herdr`.
 
-## M2: `peer-review`
+## M2: `council`
 
-One module for the whole review loop, replacing the planned `wb-review` and `wb-remediate` and the linked review skills. It is what Workbench's F1 needs, so it comes right after `workbench`. Modes, each a reference:
+One module for the whole review loop, replacing the planned `wb-review` and `wb-remediate` and the linked review skills. It is what Workbench's F1 needs, so it comes right after `workbench`. F1's first run uses one reviewer (Codex) and one author (Claude Code); the council's other lenses and models are added as F4's parallel reviewers allow.
 
-- **request:** pin the fixed point; hand the reviewer a crafted context (the diff, the spec, the repository's standards), never the author's session;
-- **review:** read-only, on the diff between two named commits, reading the connected code and not only the diff; two axes, the spec and the repository's standards; checked in order of importance, correct, safe, holds under load, tested, fast, lean; a security pass scaled to the change's risk (history, blast radius, test gaps); every finding verified before it is reported, to keep false positives out; severities blocker, major, minor and nit; at most ten findings; one JSON object between markers the skill defines (F1's contract);
+**Lenses.** Each reviewer takes one lens (a "hat") and reviews the whole change through it; no reviewer gets a slice of the diff:
+
+| Lens | Asks |
+| --- | --- |
+| spec | Does it do what the issue, plan or decision asked, and nothing it didn't? |
+| standards | Does it follow the repository's README rules, wiki decisions and conventions? |
+| correctness | Logic, edge cases, error paths, what breaks for callers |
+| security | Trust boundaries, credentials, injection, what the change exposes; scaled to the change's risk, with history and blast radius |
+| tests | Does each risky path have a check, and does the gate prove what it claims? |
+| lean | Is every line needed: the smallest complete change (`frugal`'s code rules) |
+| operability | Does it hold under real load, failure and recovery, and can the owner run it? |
+
+The request mode picks the lenses for a change: every review gets spec, standards and correctness; the rest by risk. Lenses are spread across models where more than one harness is available, so a different model sees each change at least once.
+
+**Modes,** each a reference:
+
+- **request:** pin the fixed point; build one briefing (the diff summary, the spec, the standards) that every reviewer gets word for word, never the author's session; choose the lenses and the models;
+- **review:** read-only, on the diff between two named commits, reading the connected code and not only the diff, through one lens; every finding verified before it is reported; severities blocker, major, minor and nit; at most ten findings; one JSON object between markers the skill defines (F1's contract), with the lens named;
+- **synthesize:** merge findings that point at the same place and problem; drop speculation without evidence; sort into consensus (several reviewers), single-reviewer and contested;
+- **cross-review:** optional: each reviewer sees the synthesis without attribution and agrees, disagrees or adds nuance, with evidence; contested findings settle or stay marked;
 - **remediate:** verify each finding against the code before changing anything; push back with evidence where it is wrong; fix blockers and majors, minors where small; one commit per round with the finding IDs; never push and never edit the findings file; print the new head;
 - **recheck:** re-review the changed lines and each disposition; stop after the agreed rounds or when no blocker or major is left;
 - **verify:** run the check and read its output before claiming anything is done;
-- **record:** the review word for word, then a remediation section per finding (fixed with its commit, not fixed and why, or an owner question), as Luckgrid's review records do.
+- **record:** the reviews word for word, then a remediation section per finding (fixed with its commit, not fixed and why, or an owner question), as Luckgrid's review records do.
 
-**Learns from:** obra/superpowers (requesting, receiving, verification), mattpocock/skills `code-review`, DietrichGebert/ponytail `ponytail-review`, getsentry/skills `code-review` and `security-review`, trailofbits/skills `differential-review` (ideas only, CC-BY-SA-4.0), Anthropic's code-review plugin (ideas only, proprietary terms), and Luckgrid's own review prompts and records.
+Fixed prompts only: text an agent wrote moves to another agent through files, never typed into its prompt (GW-ADR-0014 decision 5), and only the owner answers a harness's dialogs. Driving several harnesses is `multiplex`'s and `wb-flow`'s job; `council` says what each reviewer does.
 
-## M3: `herdr`
+**Learns from:** microsoft/vscode-team-kit `council-review` (model-pinned reviewers, consensus, anonymized cross-review); dotnet/fsharp `review-council` (a briefing pack, dimensions × models); Mozilla.ai's Star Chamber (consensus across providers, debate rounds); laststance/skills `x-agents-cross-review` (every agent reviews the full scope through its own perspective); obra/superpowers (requesting, receiving, verification); mattpocock/skills `code-review`; DietrichGebert/ponytail `ponytail-review`; getsentry/skills `code-review` and `security-review`; trailofbits/skills `differential-review` (ideas only, CC-BY-SA-4.0); Anthropic's code-review plugin (ideas only, proprietary terms); and Luckgrid's own review prompts and records.
 
-Replaces the copied `herdr` skill. The owner's 2026-11-11 decisions still hold: the core is a thin skill of Luckgrid's own that stops unless `HERDR_ENV=1`, checks a version floor, defers to the installed binary's `herdr --skill` and never upgrades herdr; it covers the herdr TUI, not herdr-core's `hc`; facts from third-party herdr skills go in only once `herdr <group> --help` confirms them. In the guest, `workbench`'s rules decide what may run. On top of the core, workflow references:
+## M3: `multiplex`
 
-- dispatch and wait: starting a named agent, the status vocabulary, the handles, prompt-and-wait, reading the result;
-- worktrees: creating through herdr so its events fire, the removal order, never `--force`;
-- tab status labels for active, blocked, hand-off and done;
-- sidecars: long-running work kept observable in its own pane;
-- orchestration: fanning work out to workers and auditing their results before closing a pane, with `peer-review` for the review step;
-- hand-off of the orchestrator role between harnesses.
+Replaces the copied `herdr` skill. Terminal multiplexers and session managers through one set of workflows, with a reference per backend. The backends are Workbench's [session backends](https://github.com/luckgrid/workstation/blob/main/wiki/workbench/session-backends.md): herdr the default, tmux the fallback, TUIOS under evaluation; herdr-core's `hc` later, if a Core trial starts. Rex is a terminal app, not a backend.
 
-**Learns from:** herdrdev/herdr's own skill; shunk031/skills, gregbarbosa/skills (no licence, facts only), whamp/skills, dmmulroy/skills, davidondrej/skills, callstack/agent-device `dogfood` (the thin shape), yangyang0507/herdr-skill (no licence), devarfeen/agent-skills-kit.
+- **Core (`SKILL.md`):** find which backend the agent runs in (`HERDR_ENV=1` for herdr; `TMUX` for tmux; each backend's own marker), read that backend's reference, and stop if there is none; the installed binary's own help or skill is the authority for syntax; never install, update or upgrade a backend; in the guest, `workbench`'s rules decide what may run.
+- **Workflows (`references/`),** each written once and mapped to every backend that can do it: dispatch and wait (start a named agent, the status vocabulary, prompt and wait, read the result); worktrees (create through the backend so its events fire, the removal order, never force); status labels for active, blocked, hand-off and done; sidecars for long-running observable work; orchestration (fan work out to workers and audit their results before closing a pane, with `council` for review); handing the orchestrator role between harnesses.
+- **Backends (`references/<backend>.md`):** herdr first, from the owner's 2026-11-11 decisions: a thin layer that checks `HERDR_ENV=1` and a version floor and defers to `herdr --skill`, with third-party facts only once `herdr <group> --help` confirms them (H1, H3). tmux's covers what it can do (panes, send-keys, capture) and says what it can't (agent status). TUIOS's waits for its evaluation, and keeps off what that evaluation keeps off (Inbox approvals, agent mail, plugins, remote and web).
+
+**Learns from:** herdrdev/herdr's own skill; shunk031/skills, gregbarbosa/skills (no licence, facts only), whamp/skills, dmmulroy/skills, davidondrej/skills, callstack/agent-device `dogfood` (the thin shape), yangyang0507/herdr-skill (no licence; TUI and Core), devarfeen/agent-skills-kit; tmux's manual; TUIOS's documentation; Workbench's session backends page.
 
 ## M4: `wiki`
 
@@ -115,7 +140,33 @@ Replaces `grill-me` and `grilling`, and adds what `grill-with-docs` does. Modes:
 
 **Learns from:** mattpocock/skills `grilling`, `grill-me`, `grill-with-docs` and `domain-modeling`; obra/superpowers `brainstorming`. It comes after `wiki`, since its docs mode writes through `wiki`'s conventions.
 
-## M6: `frugal`
+## M6: `design-system`
+
+Work on, or with, luckgrid/design-system (public), so changes stay on its rails. Its repository and documentation decide; this module points the agent at them in the right order and carries the rails that are easiest to break:
+
+- consume released artifacts, never repository paths; every surface is `public-preview`, none `public-stable`;
+- the cascade layers and what each owns (`ds.tokens`, `ds.base`, `ds.layouts`, `ds.primitives`), with consumer styles in a consumer layer over zero-specificity defaults;
+- semantic token roles are public, internal reference values are not; themes remap roles;
+- the one public hook vocabulary (the layout and primitive classes and `data-ds-scheme`), every other `data-*` name reserved; no `@scope`; no breakpoints or visual reordering in layouts; page shells stay the consumer's;
+- semantic, classless HTML first; native HTML and CSS before shared JavaScript;
+- Rust is the contributor and validation substrate only: consuming the CSS never needs Rust; `ds-check` and the browser tests are the gate; every tracked file is classified;
+- the published browser-support statement: what is verified and what isn't.
+
+**Modes:** orient (README, `docs/architecture/` in its reading order, the classification files); change (which file and check own a change); consume (how a site takes a release); review lens (the rails as a `council` lens).
+
+**Learns from:** the design-system repository's README and `docs/` (MIT, read at `09199f7`); the Design Tokens Community Group's stable format 2025.10; WCAG 2.2; MDN on cascade layers; vercel-labs/agent-skills `web-design-guidelines` (MIT by its README; it fetches live guidelines, so ideas only); community design-system skills.
+
+## M7: `site-system` (a project skill in site-system)
+
+Lives in the private site-system repository, not here (owner's choice): in `.agents/skills/site-system/` (read by Codex and Cursor), with `.claude/skills/site-system` linking to it for Claude Code. It loads when an agent works in that repository and changes with the code it describes. This repository lists it, and its `CREDITS.md` follows the same rules.
+
+- **Rails:** site-system's README rules (no secrets; no build output in Git; pins only; agents build candidates, only the owner seals, approves, uploads and changes DNS; Zola wrapped, not replaced, with Tera 2 templates; builds write only inside `.build/`; the gate before review; records by the wiki template), BI-ADR-0024's platform decision, and the owner's numbered decisions in its step records.
+- **Modes:** orient (README, wiki STATE, the step records); build and check (`scripts/check.sh`, `site-kit` and its stages); templates (Tera 2 rules); design system (takes `design-system`'s consume mode and the pin); release (what an agent may and may not do).
+- **Because it is a project skill:** an agent can edit it in its own working tree, so a session uses the committed version, and changes to it go through review like code.
+
+**Learns from:** site-system's README, wiki and records, and wiki-nest's backend-infrastructure decisions and guides (private); Zola 0.23 and Tera 2 documentation; Cloudflare Pages documentation; spillwavesolutions/creating-zola-static-sites-plugin (MIT).
+
+## M8: `frugal`
 
 Saving tokens without losing substance. Instructions first; tools only when installed. References:
 
@@ -135,11 +186,13 @@ Saving tokens without losing substance. Instructions first; tools only when inst
 - an independent review by a different model, with each finding dispositioned;
 - a record of the module, its review rounds and the owner's decisions.
 
+`site-system`'s are the same, in the site-system repository, with its own gate (`scripts/check.sh` there) and its records in its wiki.
+
 ## Open questions for the owner
 
 - **The wiki template in public:** `wiki` carries the rules of Luckgrid's wiki template, which is kept in private wiki-nest. Publishing them in this public repository is recommended (they hold nothing private), but it is the owner's call.
-- **The order of M4 to M6:** as written, `wiki` before `grill`, since `grill` writes through it, and `frugal` last. `frugal` could go first if token costs are pressing.
-- **`systematic-debugging`:** it leaves with M0 and no module takes it. It could become a `debug` module later, or a mode of `peer-review`.
+- **The order of M4 to M8:** as written, `wiki` before `grill`, since `grill` writes through it, then `design-system` and `site-system`, and `frugal` last. `design-system` and `site-system` could come right after M0, since the site prototypes are due this month; `frugal` could come early if token costs are pressing.
+- **`systematic-debugging`:** it leaves with M0 and no module takes it. It could become a `debug` module later, or a mode of `council`.
 
 ## After the modules
 
@@ -152,20 +205,20 @@ Kept so that the records' links still resolve. Each is now part of a module.
 
 ### P1: a thin herdr skill
 
-The owner's decision 1 of 2026-11-11. Now part of [M3](#m3-herdr).
+The owner's decision 1 of 2026-11-11. Now part of [M3](#m3-multiplex).
 
 ### P1b: confirmed facts in `wb-herdr`
 
-The owner's decision 3 of 2026-11-11. Now part of [M3](#m3-herdr): third-party facts go into `herdr`'s references once `--help` confirms them.
+The owner's decision 3 of 2026-11-11. Now part of [M3](#m3-multiplex): third-party facts go into its herdr reference once `--help` confirms them.
 
 ### P2: WB-06, helpers the linked skills name
 
-Gone with the linked skills in [M0](#m0-the-module-foundation): `peer-review` is self-contained, so it names no helper it doesn't provide.
+Gone with the linked skills in [M0](#m0-the-module-foundation): `council` is self-contained, so it names no helper it doesn't provide.
 
 ### P3: the review and remediation skills (F1)
 
-`wb-review` and `wb-remediate` become modes of [M2](#m2-peer-review), keeping F1's contract.
+`wb-review` and `wb-remediate` become modes of [M2](#m2-council), keeping F1's contract.
 
 ### Later
 
-The earlier "later" items: Workbench's own security and thinking skills are [M2](#m2-peer-review)'s security pass and [M5](#m5-grill); Cursor joins review loops after its herdr hand-off gate (F4), unchanged; keeping linked skills current is replaced by keeping references current.
+The earlier "later" items: Workbench's own security and thinking skills are [M2](#m2-council)'s security lens and [M5](#m5-grill); Cursor joins review loops after its herdr hand-off gate (F4), unchanged; keeping linked skills current is replaced by keeping references current.

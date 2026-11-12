@@ -2,7 +2,7 @@
 id: AS-STATE
 kind: state
 title: State
-summary: "Where agent-skills stands: nine skills on main (two written here, one copy, six linked), check.sh passing with submodules; nothing installed in the guest yet; next, the refactor to custom skill modules M0 to M6 (owner, 2026-11-12); the decisions in force."
+summary: "Where agent-skills stands: nine skills on main (two written here, one copy, six linked), check.sh passing with submodules; nothing installed in the guest yet; next, the refactor to custom skill modules M0 to M8 (owner, 2026-11-12); the decisions in force."
 status: active
 created: 2026-11-12
 updated: 2026-11-12  # the custom-modules plan (owner, 2026-11-12)
@@ -29,12 +29,14 @@ related: [AS-REC-2026-11-12-SKILL-MODULES, AS-RES-SKILL-REFERENCES, AS-PROGRAM, 
 | --- | --- | --- |
 | M0: remove the linked skills; `check.sh` and the README for modules | Next | [M0](../program.md#m0-the-module-foundation) |
 | M1: `workbench` (replaces `wb-guest-rules`, `wb-herdr`) | After M0 | [M1](../program.md#m1-workbench) |
-| M2: `peer-review` (takes in `wb-review`, `wb-remediate`) | After M1; Workbench's step F1 needs it | [M2](../program.md#m2-peer-review) |
-| M3: `herdr` (the thin skill, H1 and H3, and herdr workflows) | After M2 | [M3](../program.md#m3-herdr) |
+| M2: `council` (takes in `wb-review`, `wb-remediate`; reviewers with lenses, in rounds) | After M1; Workbench's step F1 needs it | [M2](../program.md#m2-council) |
+| M3: `multiplex` (replaces `herdr`; herdr the default backend, H1 and H3) | After M2 | [M3](../program.md#m3-multiplex) |
 | M4: `wiki` | After M3 | [M4](../program.md#m4-wiki) |
 | M5: `grill` | After M4 | [M5](../program.md#m5-grill) |
-| M6: `frugal`; rtk and qmd as separate Workbench catalog items | Last | [M6](../program.md#m6-frugal) |
-| Owner questions: the wiki template in public; the order of M4 to M6; `systematic-debugging` | Owner | [questions](../program.md#open-questions-for-the-owner) |
+| M6: `design-system` | After M5, or right after M0 (owner question) | [M6](../program.md#m6-design-system) |
+| M7: `site-system`, a project skill in the site-system repository | After M6 | [M7](../program.md#m7-site-system-a-project-skill-in-site-system) |
+| M8: `frugal`; rtk and qmd as separate Workbench catalog items | Last | [M8](../program.md#m8-frugal) |
+| Owner questions: the wiki template in public; the order of M4 to M8; `systematic-debugging` | Owner | [questions](../program.md#open-questions-for-the-owner) |
 
 WB-06 closes with M0, which removes the skills it is about.
 
@@ -44,7 +46,8 @@ The owner's decisions that bind this repository, newest first. Groundwork's GW-A
 
 | Date | Decision | Where recorded |
 | --- | --- | --- |
-| 2026-11-12 | Fully custom skill modules instead of maintaining an upstream, with a reference list of skills; own words only, ideas credited; the linked skills removed in the first refactor PR; the review module named `peer-review`; `frugal` as instructions first, rtk and qmd later through Workbench's catalog | [record](2026-11-12-skill-modules.md#the-owners-choices-2026-11-12) |
+| 2026-11-12 | Second round: the review module is `council` (several models, each with a lens, in rounds); `multiplex` replaces `herdr`, with herdr the default backend; new modules `design-system` here and `site-system` as a project skill in the site-system repository | [record](2026-11-12-skill-modules.md#second-round-the-owners-feedback-2026-11-12) |
+| 2026-11-12 | Fully custom skill modules instead of maintaining an upstream, with a reference list of skills; own words only, ideas credited; the linked skills removed in the first refactor PR; the review module named `peer-review` (renamed `council` the same day); `frugal` as instructions first, rtk and qmd later through Workbench's catalog | [record](2026-11-12-skill-modules.md#the-owners-choices-2026-11-12) |
 | 2026-11-12 | Pages here may link to Luckgrid's private Workstation, with a note that it is still in development and private for now (CR-08) | [record](2026-11-12-workstation-links.md) |
 | 2026-11-11 | Replace the copied `herdr` skill with a thin Luckgrid skill; third-party herdr facts only once `--help` confirms them, in Luckgrid's words (H1, H3) | [record](2026-11-10-linked-upstream-skills.md#the-owners-decision-on-the-herdr-skill-2026-11-11) |
 | 2026-11-11 | Merge agent-skills#2 with WB-06 open, gated on F1; with it, public skills are linked from their authors at reviewed commits, not copied (the PR's design; superseded by the 2026-11-12 decision once M0 merges) | [record](2026-11-10-linked-upstream-skills.md#the-independent-reviews-wb-06-and-the-merge) |

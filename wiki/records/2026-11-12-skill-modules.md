@@ -2,10 +2,10 @@
 id: AS-REC-2026-11-12-SKILL-MODULES
 kind: research
 title: Planning the custom skill modules (2026-11-12)
-summary: "The owner asked to replace linked upstream skills with fully custom modules (workbench, grill, frugal, peer-review, herdr, wiki) and a reference list. A cloud session rechecked the skills in records and chat history, read 21 candidate repositories at pinned commits and the online evaluations, and asked four questions; the owner chose own words only, removing upstream in the first PR, the name peer-review, and frugal as instructions first."
+summary: "The owner asked to replace linked upstream skills with fully custom modules (workbench, grill, frugal, peer-review, herdr, wiki) and a reference list. A cloud session rechecked the skills in records and chat history, read 21 candidate repositories at pinned commits and the online evaluations, and asked four questions; the owner chose own words only, removing upstream in the first PR, the name peer-review, and frugal as instructions first. In a second round the same day the owner renamed peer-review to council and herdr to multiplex, and added design-system and a site-system project skill."
 status: done
 created: 2026-11-12
-updated: 2026-11-12
+updated: 2026-11-12  # second round: the owner's feedback and choices
 related: [AS-PROGRAM, AS-RES-SKILL-REFERENCES, AS-STATE, AS-REC-2026-11-10-LINKED-UPSTREAM-SKILLS, GW-REC-2026-11-11-HERDR-CORE, GW-ADR-0014]
 ---
 
@@ -97,3 +97,39 @@ Listings and rankings (skills.sh, Skillselion, Claude Market, Tessl) were used t
 - **F1's U16 changes for linked skills:** not needed after M0. Workstation's Workbench pages that describe them need a follow-up PR there.
 - **`wb-review` and `wb-remediate`:** modes of `peer-review` (M2), with F1's contract kept.
 - **The decision of agent-skills#2 to link, not copy:** superseded once M0 merges.
+
+## Second round: the owner's feedback (2026-11-12)
+
+Word for word, after reading agent-skills#5:
+
+```text
+some feedback:
+
+* what do you think about using audit instead of peer-review? if that implies something else, let's find a more applicable namespace for review and remediation involving multiple agent models with different lenses/hats to review from diff angles/perspectives (iterate?)
+* herdr clashes with existing herdr skill so maybe this can be multiplex instead so it can work with multiplexers and session manager tools of various types, using herdr as a default based on workbench skill and tools
+* I want to include a design-system and site-system skill module based on records, knowledge sources, etc from multiple repos, internet, etc to help with site-system and design-system development (these can be focused on decisions, architecture, etc from these 2 repos to help align / stay on rails)
+```
+
+### The owner's choices
+
+Asked as two multiple-choice questions; the owner chose the recommended option each time:
+
+| Question | Owner's choice |
+| --- | --- |
+| The review module's name, offered with the advice that `audit` usually means a one-off inspection (a security or compliance audit, or a full-repo sweep such as ponytail's `ponytail-audit`) rather than review, fix and recheck in rounds | `council`, the name most multi-model review skills use, over `crosscheck`, `audit` and keeping `peer-review` |
+| Where the `site-system` module lives, since site-system is private and this repository is public | A project skill in the site-system repository (`.agents/skills/`, with a link in `.claude/skills/` for Claude Code), listed here; `design-system` is public and goes here |
+
+`multiplex` was taken as the owner proposed it.
+
+### What this round read
+
+- **Multi-model review skills:** microsoft/vscode-team-kit's `council-review` (MIT, `60a489a9`); dotnet/fsharp's `review-council`, ktaletsk/council, mikeng-io's `deep-council` and laststance's `x-agents-cross-review` (by their listings; the dotnet and laststance skills were not at the paths listed, and ktaletsk and mikeng-io have no licence file); Mozilla.ai's post on its Star Chamber. They share one pattern: one briefing for every reviewer, model-pinned reviewers in parallel, a synthesis into consensus, single and contested findings, and an optional cross-review. `council` takes that pattern and adds lenses.
+- **Session backends:** Workbench's page (herdr default, tmux fallback, TUIOS evaluating; Rex not a backend), which `multiplex` follows.
+- **design-system:** its README and `docs/architecture/` at `09199f7` (public, MIT, `0.1.0-preview.1`); the Design Tokens Community Group's first stable format, 2025.10; vercel-labs' `web-design-guidelines` (MIT by its README, no licence file; it fetches guidelines live) and community design-system skills, by their listings.
+- **site-system:** its README's rules 1 to 8 and its wiki; BI-ADR-0024 in wiki-nest; spillwavesolutions' Zola skill (MIT, `d8ec459d`).
+
+### Effect
+
+- M2 is `council`, M3 is `multiplex`; the owner's herdr decisions H1 and H3 hold for `multiplex`'s herdr reference.
+- New: M6 `design-system` here, and M7 `site-system` in the site-system repository. `frugal` becomes M8.
+- An open question for the owner: whether `design-system` and `site-system` come right after M0, since the site prototypes are due this month.
