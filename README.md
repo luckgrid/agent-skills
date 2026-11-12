@@ -37,6 +37,8 @@ The repositories under `upstream/` are other people's work, read as data. Their 
 
 ## How the guest installs it (planned; Workbench's U16 is built but inert)
 
+> **About Workstation.** [luckgrid/workstation](https://github.com/luckgrid/workstation) is Luckgrid's monorepo for Workstation, Groundwork and Workbench: the tools that set up a Mac's accounts and the isolated Lima guest where agents work, and that install this repository's skills there. It is still in development and private for now, so its links open only for collaborators until it becomes public when it's ready.
+
 Workbench's `wb setup` has the step, U16 (built in luckgrid/wiki-nest#64; Workbench now lives in luckgrid/workstation, [daily use](https://github.com/luckgrid/workstation/blob/main/wiki/workbench/daily-use.md#guest-tools-wb-setup)), but it installs nothing until this repository's commit and the CLI are pinned. As built, it exports the pinned commit with `git archive` and runs the CLI once, so it would install only the skills written here: the export has no submodules. Before a commit with linked skills is pinned, U16 changes as below (agent workflows step F1, in [Workstation](https://github.com/luckgrid/workstation/blob/main/wiki/workbench/agent-workflows.md)).
 
 The guest pins a commit of this repository and checks out its submodules at the commits it records. `wb setup` then runs a pinned version of the skills CLI against that local checkout only, with `DISABLE_TELEMETRY=1` and `DO_NOT_TRACK=1`. Nothing is fetched at install time beyond the pinned commits.
