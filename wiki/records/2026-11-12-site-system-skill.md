@@ -5,7 +5,7 @@ title: M7, the site-system project skill (2026-11-12)
 summary: "A cloud session wrote M7, the site-system project skill, in the private site-system repository (site-system#9, draft), built first by the owner's choice. It read the sources at pinned commits, asked the owner four questions (each answered with the recommended option), and wrote a router SKILL.md, seven references and CREDITS.md. This repository lists the skill and its public sources; its content and full record stay in site-system."
 status: active
 created: 2026-11-12
-updated: 2026-11-12
+updated: 2026-11-13  # the independent review; a private detail removed (its finding)
 related: [AS-PROGRAM, AS-STATE, AS-RES-SKILL-REFERENCES, AS-REC-2026-11-12-SKILL-MODULES, GW-ADR-0014]
 ---
 
@@ -22,7 +22,6 @@ The roadmap's [M7](../program.md#m7-site-system-a-project-skill-in-site-system) 
 ## What was found that bears on other modules
 
 - **Claude Code and Codex both follow a linked skill folder,** by their documentation (read 2026-11-12): Claude Code a project skill entry that is a symlink, Codex a symlinked skill folder. Workbench's cell S1 still checks link-following in the guest.
-- **Nothing in the guest's harness settings turns off project skills,** by Workbench's daily-use page: U13 sets no Codex `[[skills.config]]` entry and nothing in Claude Code or Cursor that stops them.
 - **Most Zola skills online teach Tera 1** (macros, shortcodes, `import`), which Zola 0.23 removed. M7 takes nothing from them but shape. The same will hold for any module that touches Zola.
 - **For M6:** design-system's consumer rules as M7 carries them are in M7's `design-system` reference, from design-system at `09199f7`. When M6 exists, that reference becomes a pointer to it.
 
@@ -31,7 +30,8 @@ The roadmap's [M7](../program.md#m7-site-system-a-project-skill-in-site-system) 
 - **site-system's gate** passed at the skill's commit in the cloud session on Rust 1.97.0, not the pinned 1.99.1, which the session couldn't fetch; the owner's `wb check` then passed it on the pin.
 - **The skill's own checks:** the front matter meets the specification's limits (a 502-character description), every relative link and anchor resolves one level deep, and the `.claude` link resolves.
 - **A release built from a plain clone** at the skill's commit had the same digests as before the skill.
+- **An independent review** (2026-11-12, a different model) found no blocker or major and four minor issues; all were fixed, one of them by removing a private configuration detail from this record. The review and its dispositions are in site-system's records.
 
 ## Next
 
-Done the same evening, owner-reported: `wb check` passed on the pinned toolchain, and a fresh Claude Code pane and a fresh Codex pane in the guest both list `site-system`, so Claude Code follows the linked skill folder. Next: an independent review by a different model, from a prompt saved in the owner's project; the merge on the owner's word.
+Done the same evening, owner-reported: `wb check` passed on the pinned toolchain, and a fresh Claude Code pane and a fresh Codex pane in the guest both list `site-system`, so Claude Code follows the linked skill folder. The independent review followed (see Checks). Next: a recheck of its fixes, then the merge on the owner's word.

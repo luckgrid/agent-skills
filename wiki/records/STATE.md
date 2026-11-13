@@ -27,7 +27,7 @@ related: [AS-REC-2026-11-12-SKILL-MODULES, AS-RES-SKILL-REFERENCES, AS-PROGRAM, 
 
 | Item | Gate | Page |
 | --- | --- | --- |
-| M7: `site-system`, a project skill in the site-system repository, with `design-system`'s consume rules until M6 | **In progress:** written on site-system#9 (draft, private), with the owner's answers to its four questions ([record](2026-11-12-site-system-skill.md)). The owner's `wb check` passed on the pinned toolchain and Claude Code and Codex list the skill in the guest (owner, 2026-11-12). Next: an independent review, the merge on the owner's word | [M7](../program.md#m7-site-system-a-project-skill-in-site-system) |
+| M7: `site-system`, a project skill in the site-system repository, with `design-system`'s consume rules until M6 | **In progress:** written on site-system#9 (draft, private), with the owner's answers to its four questions ([record](2026-11-12-site-system-skill.md)). The owner's `wb check` passed on the pinned toolchain and Claude Code and Codex list the skill in the guest (owner, 2026-11-12). An independent review found four minor issues, all fixed. Next: their recheck, the merge on the owner's word | [M7](../program.md#m7-site-system-a-project-skill-in-site-system) |
 | M0: remove the linked skills; `check.sh` and the README for modules | After M7 | [M0](../program.md#m0-the-module-foundation) |
 | M1: `workbench` (replaces `wb-guest-rules`, `wb-herdr`) | After M0 | [M1](../program.md#m1-workbench) |
 | M2: `council` (takes in `wb-review`, `wb-remediate`; reviewers with lenses, in rounds) | After M1; Workbench's step F1 needs it | [M2](../program.md#m2-council) |
