@@ -5,7 +5,7 @@ title: Roadmap
 summary: "The refactor to fully custom skill modules (owner, 2026-11-12): M0 removes the linked upstream skills and sets the module layout; then workbench, council, multiplex, wiki, grill, design-system, a site-system project skill in that repository, frugal and triage, each written in Luckgrid's own words from a reference list of reviewed skills. The earlier items P1 to P3 are folded into the modules."
 status: active
 created: 2026-11-12
-updated: 2026-11-13  # the rename done; before that, agents monorepo: the owner's decisions after the independent review, items AG1 to AG3 after M2, M0 unchanged; before that, third round (owner): the open questions answered, the order, triage; before that, second round (owner): council, multiplex, design-system and site-system; before that, the custom-modules refactor (owner, 2026-11-12); before that, P1 to P3 from the wiki's first version
+updated: 2026-11-13  # fourth round: M1 workbench moves to Workstation; the rename done; before that, agents monorepo: the owner's decisions after the independent review, items AG1 to AG3 after M2, M0 unchanged; before that, third round (owner): the open questions answered, the order, triage; before that, second round (owner): council, multiplex, design-system and site-system; before that, the custom-modules refactor (owner, 2026-11-12); before that, P1 to P3 from the wiki's first version
 related: [AS-ADR-0001, AS-ARCH-AGENTS-WORKSPACE, AS-STATE, AS-RES-SKILL-REFERENCES, AS-REC-2026-11-12-SKILL-MODULES, GW-ADR-0014, GW-ARCH-WORKBENCH-AGENT-WORKFLOWS, AS-ARCH-SKILL-SOURCES, AS-ARCH-GUEST-INSTALL]
 ---
 
@@ -51,13 +51,17 @@ The owner answered the open questions ([record](records/2026-11-12-skill-modules
 - **The order:** the `site-system` project skill first, with `design-system`'s rules for consuming releases folded in, then the rest ([order](#order)).
 - **`systematic-debugging`:** the owner's words: "how about a broader triage skill module with debug being a part of it, alongside other triage/debug skills". That is M9, `triage`.
 
+### Fourth round (owner, 2026-11-13)
+
+`workbench` moves to Workstation ([record](records/2026-11-12-skill-modules.md#fourth-round-workbench-moves-to-workstation-2026-11-13)). In the owner's words, the module "would/should contain workbench skills inside a single dir", and "it might be better to just migrate workbench skill into workstation repo like how site-system was handled since its very specific to that workspace". Because agents in every repository in the guest need it, the owner chose to ship it with Workbench: installed guest-wide by U16 from Workstation's guest files, not as a project skill that loads only in Workstation's checkout. Workstation's proposed role skills (WC13) become its modes.
+
 ## Order
 
 Module numbers are IDs and don't change; the build order is:
 
 1. **M7 `site-system`**, now. It is a project skill in the site-system repository, so agents there get it once it merges, without waiting for Workbench's install step, and it helps the site prototypes due this month. Until M6 exists, it carries `design-system`'s rules for consuming a release.
 2. **M0**, the module foundation.
-3. **M1 `workbench`**, then **M2 `council`**: what Workbench's F1 needs. **AG1** follows M2 and can run alongside what comes next ([agents items](#agents-monorepo-owner-2026-11-12)).
+3. **M2 `council`**: with Workbench's own `workbench` skill ([M1](#m1-workbench), now in Workstation), what Workbench's F1 needs. **AG1** follows M2 and can run alongside what comes next ([agents items](#agents-monorepo-owner-2026-11-12)).
 4. **M3 `multiplex`**, **M4 `wiki`**, **M5 `grill`**.
 5. **M6 `design-system`**; M7 then points to it instead of carrying its rules.
 6. **M8 `frugal`**, **M9 `triage`**.
@@ -94,6 +98,8 @@ One PR, before any module:
 
 ## M1: `workbench`
 
+**Moved to Workstation (owner, 2026-11-13; [fourth round](#fourth-round-owner-2026-11-13)).** Workbench's own skill, one folder at `packages/workbench/guest/skills/workbench/` in luckgrid/workstation, hashed in `guest.sha256` and installed guest-wide by U16 with `wb setup`. Besides the content below, it takes WC13's role routines (plan, orchestrate, code, write, hand-off) as modes. Once it is installed, `wb-guest-rules` and `wb-herdr` leave this repository. The plan as first written here, kept for the Workstation session:
+
 Replaces `wb-guest-rules` and `wb-herdr`. The guest's house rules, always loaded in the guest, plus references for:
 
 - herdr in the guest: socket commands are refused in the sandbox, so the agent prints each for the owner and takes every ID from the reply (today's `wb-herdr`);
@@ -104,7 +110,7 @@ Replaces `wb-guest-rules` and `wb-herdr`. The guest's house rules, always loaded
 
 ## M2: `council`
 
-One module for the whole review loop, replacing the planned `wb-review` and `wb-remediate` and the linked review skills. It is what Workbench's F1 needs, so it comes right after `workbench`. F1's first run uses one reviewer (Codex) and one author (Claude Code); the council's other lenses and models are added as F4's parallel reviewers allow.
+One module for the whole review loop, replacing the planned `wb-review` and `wb-remediate` and the linked review skills. It is what Workbench's F1 needs, with Workbench's own `workbench` skill, so it comes right after M0. F1's first run uses one reviewer (Codex) and one author (Claude Code); the council's other lenses and models are added as F4's parallel reviewers allow.
 
 **Lenses.** Each reviewer takes one lens (a "hat") and reviews the whole change through it; no reviewer gets a slice of the diff:
 

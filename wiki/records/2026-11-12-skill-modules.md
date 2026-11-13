@@ -5,7 +5,7 @@ title: Planning the custom skill modules (2026-11-12)
 summary: "The owner asked to replace linked upstream skills with fully custom modules (workbench, grill, frugal, peer-review, herdr, wiki) and a reference list. A cloud session rechecked the skills in records and chat history, read 21 candidate repositories at pinned commits and the online evaluations, and asked four questions; the owner chose own words only, removing upstream in the first PR, the name peer-review, and frugal as instructions first. In a second round the same day the owner renamed peer-review to council and herdr to multiplex, and added design-system and a site-system project skill; in a third round the owner answered the open questions and added triage."
 status: done
 created: 2026-11-12
-updated: 2026-11-12  # third round: the open questions answered; before that, second round: the owner's feedback and choices
+updated: 2026-11-13  # fourth round: workbench moves to Workstation, with the role routines as modes; before that, third round: the open questions answered; before that, second round: the owner's feedback and choices
 related: [AS-PROGRAM, AS-RES-SKILL-REFERENCES, AS-STATE, AS-REC-2026-11-10-LINKED-UPSTREAM-SKILLS, GW-REC-2026-11-11-HERDR-CORE, GW-ADR-0014]
 ---
 
@@ -153,3 +153,19 @@ Read at the commits already listed: obra/superpowers' `systematic-debugging` and
 - The roadmap has an [order](../program.md#order): M7 first, then M0, M1, M2, M3, M4, M5, M6, M8, M9.
 - M9 `triage` is new; `systematic-debugging` goes to it.
 - No owner question is left open in the roadmap.
+
+## Fourth round: `workbench` moves to Workstation (2026-11-13)
+
+Workstation's proposed agent roles (WC13, 2026-11-13) listed `wb-plan`, `wb-orchestrate`, `wb-code` and `wb-write` as new skills in this repository, while this roadmap folds `wb-*` skills into modules. Asked which way, the owner wrote, word for word:
+
+> to answer your question and clarify:
+> the skill module would/should contain workbench skills inside a single dir, the different uses/commands/assets/resources/etc can be defined inside that workbench skill folder. Thinking about it, it might be better to just migrate workbench skill into workstation repo like how site-system was handled since its very specific to that workspace
+
+The session pointed out that, unlike `site-system`, the `workbench` skill is needed by agents in every repository in the guest, and a project skill in Workstation loads only inside that checkout. It offered three ways; the owner chose "Ship it with Workbench (Recommended)": the skill's source is in Workstation's `packages/workbench/guest/skills/workbench/`, hashed in `guest.sha256` and installed guest-wide by U16 with `wb setup`, versioned with `wb` and with no extra pin. The other options were a Workstation project skill only, and keeping M1 here.
+
+### Effect
+
+- M1 `workbench` leaves this repository's build order; it is written in a Workstation session. One folder holds the guest's house rules, the herdr hand-offs and the role routines (plan, orchestrate, code, write, hand-off) as its modes and references.
+- M2 `council` follows M0 directly and stays here; F1 needs both `workbench` (in Workstation) and `council`.
+- `wb-guest-rules` and `wb-herdr` leave this repository once Workbench's skill is installed in the guest, so the guest never has both.
+- GW-ADR-0014's "one skills repository" becomes two sources; that change is Workstation's.
