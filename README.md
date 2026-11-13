@@ -1,6 +1,6 @@
-# agent-skills
+# agents
 
-**Direction (owner, 2026-11-12):** this repository becomes an agents monorepo for reusable configurations, skills and tools, and is to be renamed `luckgrid/agents`. Skills stay a package at `skills/`. The [decision](wiki/records/decisions/0001-agents-monorepo.md), [proposed workspace](wiki/architecture/agents-workspace.md) and [knowledge lineage](wiki/resources/agents-knowledge-lineage.md) record it. Workstation's wiki is the latest source for shared configuration principles and component boundaries; older WfOS/Workstreams material supplies lineage. The paths and installation instructions below still describe the repository as it is today.
+**Direction (owner, 2026-11-12):** this repository becomes an agents monorepo for reusable configurations, skills and tools. It was named `luckgrid/agent-skills` until 2026-11-13; GitHub redirects the old name. Skills stay a package at `skills/`. The [decision](wiki/records/decisions/0001-agents-monorepo.md), [proposed workspace](wiki/architecture/agents-workspace.md) and [knowledge lineage](wiki/resources/agents-knowledge-lineage.md) record it. Workstation's wiki is the latest source for shared configuration principles and component boundaries; older WfOS/Workstreams material supplies lineage. The paths and installation instructions below still describe the repository as it is today.
 
 Agent Skills shared by the Workbench guest's harnesses (Claude Code, Codex and Cursor). Each skill is a folder `skills/<name>/` with a `SKILL.md` in the Agent Skills format: YAML front matter with `name` and `description`, then the instructions.
 
@@ -34,7 +34,7 @@ So the authors keep their skills and their credit. Someone who adds this reposit
 Clone with the submodules:
 
 ```sh
-git clone --recurse-submodules --shallow-submodules https://github.com/luckgrid/agent-skills
+git clone --recurse-submodules --shallow-submodules https://github.com/luckgrid/agents
 # or, in an existing clone:
 git submodule update --init --depth 1
 ```
@@ -52,8 +52,8 @@ The guest pins a commit of this repository and checks out its submodules at the 
 The skills CLI (1.7.6) does not follow symlinked folders when it scans a checkout, so `wb setup` runs it once for the checkout and once for each linked skill, by the link's path:
 
 ```sh
-skills add ~/Workspaces/agent-skills -g -a claude-code codex cursor -y
-skills add ~/Workspaces/agent-skills/skills/<name> -g -a claude-code codex cursor -y   # each [skill.<name>] in upstream.toml
+skills add ~/Workspaces/agents -g -a claude-code codex cursor -y
+skills add ~/Workspaces/agents/skills/<name> -g -a claude-code codex cursor -y   # each [skill.<name>] in upstream.toml
 ```
 
 (`wb setup` passes absolute paths; a path that isn't absolute or `./`-relative is read as a GitHub repository.) Tested with 1.7.6 in an empty home with no network, on 2026-11-10: each skill is copied to `~/.agents/skills/<name>` (byte-identical to the folder digests here, `agents/openai.yaml` included), `~/.claude/skills/<name>` is a link to that copy, Codex and Cursor read `~/.agents/skills` directly, nothing is written to `~/.cursor/skills`, and the lock file is `~/.agents/.skill-lock.json` with each source recorded as a local path.

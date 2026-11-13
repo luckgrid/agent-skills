@@ -2,10 +2,10 @@
 id: AS-STATE
 kind: state
 title: State
-summary: "Where agent-skills stands: nine skills on main (two written here, one copy, six linked), check.sh passing with submodules; nothing installed in the guest yet; the agents monorepo (AS-ADR-0001: the owner's decisions, the rename to luckgrid/agents, items AG1 to AG3 after M2), plus the refactor to custom skill modules M0 to M9 (owner, 2026-11-12), the site-system project skill first; the decisions in force."
+summary: "Where this repository (luckgrid/agents, named agent-skills until 2026-11-13) stands: nine skills on main (two written here, one copy, six linked), check.sh passing with submodules; nothing installed in the guest yet; the agents monorepo (AS-ADR-0001: the owner's decisions, the rename to luckgrid/agents, items AG1 to AG3 after M2), plus the refactor to custom skill modules M0 to M9 (owner, 2026-11-12), the site-system project skill (M7) done; the decisions in force."
 status: active
 created: 2026-11-12
-updated: 2026-11-12  # agents monorepo: the owner's decisions after the independent review; before that, agents monorepo direction and knowledge consolidation; before that, M7 in progress (site-system#9); before that, the custom-modules plan (owner, 2026-11-12)
+updated: 2026-11-13  # M1 workbench moves to Workstation, WC13's role skills as its modes; M7 done, the rename done; before that, agents monorepo: the owner's decisions after the independent review; before that, agents monorepo direction and knowledge consolidation; before that, M7 in progress (site-system#9); before that, the custom-modules plan (owner, 2026-11-12)
 related: [AS-ADR-0001, AS-ARCH-AGENTS-WORKSPACE, AS-RES-AGENTS-LINEAGE, AS-REC-2026-11-12-SKILL-MODULES, AS-RES-SKILL-REFERENCES, AS-PROGRAM, AS-ARCH-SKILL-SOURCES, AS-ARCH-GUEST-INSTALL, GW-ADR-0014]
 ---
 
@@ -25,17 +25,18 @@ related: [AS-ADR-0001, AS-ARCH-AGENTS-WORKSPACE, AS-RES-AGENTS-LINEAGE, AS-REC-2
 
 ## Agents monorepo (owner, 2026-11-12)
 
-[AS-ADR-0001](decisions/0001-agents-monorepo.md) records the owner's decisions: an agents monorepo, renamed `luckgrid/agents` after its PR merges; skills as a package, staying at `skills/`; Workstation's wiki as the latest knowledge source; public config defaults here with a private overlay in Groundwork's agent-config repository, the stricter value winning for sandbox settings; Rust after M2, starting with the validator; Claude Code and Codex for the first shared-config proof. The [workspace design](../architecture/agents-workspace.md) is proposed. Nothing is built, renamed or installed yet. Workflow Factory stays independent WIP, WfOS resumption is optional, and wiki-nest context creates no migration task.
+[AS-ADR-0001](decisions/0001-agents-monorepo.md) records the owner's decisions: an agents monorepo, renamed `luckgrid/agents` on 2026-11-13; skills as a package, staying at `skills/`; Workstation's wiki as the latest knowledge source; public config defaults here with a private overlay in Groundwork's agent-config repository, the stricter value winning for sandbox settings; Rust after M2, starting with the validator; Claude Code and Codex for the first shared-config proof. The [workspace design](../architecture/agents-workspace.md) is proposed. Nothing is built or installed yet. Workflow Factory stays independent WIP, WfOS resumption is optional, and wiki-nest context creates no migration task.
 
 ## Open
 
 | Item | Gate | Page |
 | --- | --- | --- |
-| M7: `site-system`, a project skill in the site-system repository, with `design-system`'s consume rules until M6 | **In progress:** written on site-system#9 (draft, private), with the owner's answers to its four questions ([record](2026-11-12-site-system-skill.md)). The owner's `wb check` passed on the pinned toolchain and Claude Code and Codex list the skill in the guest (owner, 2026-11-12). An independent review found four minor issues, all fixed and rechecked (2026-11-13). Next: the merge on the owner's word, site-system#9 first, then this repository's records (squash) | [M7](../program.md#m7-site-system-a-project-skill-in-site-system) |
-| Rename to `luckgrid/agents` (owner, in GitHub), then a Workstation PR for its references | After AS-ADR-0001's PR merges | [step 2](../architecture/agents-workspace.md#steps-and-proof-gates) |
-| M0: remove the linked skills; `check.sh` and the README for modules | After M7 | [M0](../program.md#m0-the-module-foundation) |
-| M1: `workbench` (replaces `wb-guest-rules`, `wb-herdr`) | After M0 | [M1](../program.md#m1-workbench) |
-| M2: `council` (takes in `wb-review`, `wb-remediate`; reviewers with lenses, in rounds) | After M1; Workbench's step F1 needs it | [M2](../program.md#m2-council) |
+| M7: `site-system`, a project skill in the site-system repository, with `design-system`'s consume rules until M6 | **Done:** site-system#9 squash-merged as `fee220c` (2026-11-13), after its independent review and recheck ([record](2026-11-12-site-system-skill.md)) | [M7](../program.md#m7-site-system-a-project-skill-in-site-system) |
+| Rename to `luckgrid/agents` | **Done** by the owner, 2026-11-13; Workstation's PR updates `wb sync`, U16's clone path and its current pages | [step 2](../architecture/agents-workspace.md#steps-and-proof-gates) |
+| WC13's role skills | **Decided** (owner, 2026-11-13): modes of the `workbench` skill, which moves to Workstation and ships with Workbench ([fourth round](../program.md#fourth-round-owner-2026-11-13)) | [M1](../program.md#m1-workbench) |
+| M0: remove the linked skills; `check.sh` and the README for modules | **Next** (M7 is done) | [M0](../program.md#m0-the-module-foundation) |
+| M1: `workbench` (replaces `wb-guest-rules`, `wb-herdr`; WC13's role routines as modes) | **Moved to Workstation:** written there, shipped with Workbench and installed guest-wide by U16; the two `wb-*` skills leave here once it is installed | [M1](../program.md#m1-workbench) |
+| M2: `council` (takes in `wb-review`, `wb-remediate`; reviewers with lenses, in rounds) | After M0; Workbench's step F1 needs it and Workbench's `workbench` skill | [M2](../program.md#m2-council) |
 | AG1: Rust validator replaces `check.sh`; Moon admitted for this repository | After M2; alongside M3 to M9 | [agents items](../program.md#agents-monorepo-owner-2026-11-12) |
 | AG2: shared user-level instructions for Claude Code and Codex | After AG1 | [steps](../architecture/agents-workspace.md#steps-and-proof-gates) |
 | AG3: settings and sandbox baseline with the agent-config overlay (stricter wins); GW-ADR-0011 amendment and gate A2 in Workstation | After AG2 | [steps](../architecture/agents-workspace.md#steps-and-proof-gates) |
@@ -54,6 +55,7 @@ The owner's decisions that bind this repository, newest first. Groundwork's GW-A
 
 | Date | Decision | Where recorded |
 | --- | --- | --- |
+| 2026-11-13 | `workbench` (M1) moves to Workstation as one skill folder with modes, WC13's role routines among them; shipped with Workbench and installed guest-wide by U16 | [fourth round](2026-11-12-skill-modules.md#fourth-round-workbench-moves-to-workstation-2026-11-13) |
 | 2026-11-12 | After the independent review: public config defaults here, private overlay in agent-config; the stricter value wins for sandbox, deny and permission settings; Rust after M2, validator first; Claude Code and Codex for the first shared-config proof; rename to `luckgrid/agents` | [AS-ADR-0001](decisions/0001-agents-monorepo.md), [session](2026-11-12-agents-monorepo.md#the-review-and-the-owners-choices-2026-11-12) |
 | 2026-11-12 | Expand into an agents monorepo; skills become a package; consolidate relevant knowledge using Workstation as latest source; Workflow Factory stays independent and WfOS optional | [AS-ADR-0001](decisions/0001-agents-monorepo.md), [session](2026-11-12-agents-monorepo.md) |
 | 2026-11-12 | Third round: `wiki` publishes the wiki template's rules in its own words, with `wiki-structure.md` the authority; the `site-system` project skill is built first; a `triage` module, with debugging part of it | [record](2026-11-12-skill-modules.md#third-round-the-open-questions-answered-2026-11-12) |

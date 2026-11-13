@@ -25,7 +25,7 @@ From Groundwork's GW-ADR-0014 decision 2 (proposed; owner, 2026-11-07: "Pinned, 
 
 ## What the CLI writes (tested, 2026-11-10)
 
-Tested with 1.7.6 in an empty home with no network, with telemetry off (agent-skills#2):
+Tested with 1.7.6 in an empty home with no network, with telemetry off (agents#2):
 
 - each skill is copied to `~/.agents/skills/<name>`, byte-identical to the folder digests in `upstream.toml`;
 - `~/.claude/skills/<name>` is a link to that copy, for Claude Code; Codex and Cursor read `~/.agents/skills` directly;

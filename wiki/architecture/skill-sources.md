@@ -50,7 +50,7 @@ It needs only `python3` (3.9 or later, so macOS's own works) and `git`, and chan
 3. **Links:** each `skills/<name>` symlink points exactly at `../upstream/<repo>/<path>` and resolves inside that submodule; each submodule is in `.gitmodules` with the same URL, its recorded gitlink and its checkout are the pinned commit, and its licence file exists; each linked `SKILL.md` and whole folder match their digests, and a linked folder may not contain a symlink.
 4. **Nothing unlisted:** no symlink in `skills/`, folder in `upstream/` or submodule without its `upstream.toml` entry, and no entry whose `skills/<name>` is a copy instead of a link.
 
-Each failure was shown by a mutation the script catches, 15 cases plus an unmutated control, when linking was added (agent-skills#2). In a clone without submodules the script fails, because the linked skills' targets aren't checked out; that is expected, and the root README says how to clone with them.
+Each failure was shown by a mutation the script catches, 15 cases plus an unmutated control, when linking was added (agents#2). In a clone without submodules the script fails, because the linked skills' targets aren't checked out; that is expected, and the root README says how to clone with them.
 
 The script checks files, not behaviour. It doesn't prove that a skill's instructions are complete or safe once installed: that is the review's job at each pinned commit, and WB-06 ([program](../program.md#p2-wb-06-helpers-the-linked-skills-name)) is an example of what only a review finds.
 

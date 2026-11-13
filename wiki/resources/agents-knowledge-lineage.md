@@ -5,7 +5,7 @@ title: Agents knowledge lineage
 summary: "Pinned sources and a disposition crosswalk for profiles, providers, skills, tools and native projections, consolidated from Workstation, WfOS and lg-workstreams."
 status: active
 created: 2026-11-12
-updated: 2026-11-12  # after the independent review: lg-workstreams labelled private; the lg-workstreams revision question recorded
+updated: 2026-11-13  # lg-workstreams revision settled; before that, after the independent review: lg-workstreams labelled private; the lg-workstreams revision question recorded
 related: [AS-ADR-0001, AS-ARCH-AGENTS-WORKSPACE, AS-REC-2026-11-12-AGENTS-MONOREPO, AS-RESOURCES, WS-ADR-0004]
 ---
 
@@ -28,7 +28,7 @@ All sources below were read on 2026-11-12. Workstation, wiki-nest and lg-workstr
 | [Workflow Factory standards](https://github.com/luckgrid/lg-workstreams/blob/c1c9ef09c56cbbda2ed2ca381561c082dd27a49e/Build/bin/workflow-factory/foundation/workflow-pattern-standards.md) and [provider architecture](https://github.com/luckgrid/lg-workstreams/blob/c1c9ef09c56cbbda2ed2ca381561c082dd27a49e/Build/bin/workflow-factory/architecture/provider-capability-model.md) | Same Workstreams revision | Provider-neutral workflow intent; native manifests; separate workspace, execution, presentation and harness roles. Remains independent WIP; its workflow rules are not adopted wholesale |
 | [Wiki structure](https://github.com/luckgrid/wiki-nest/blob/main/wiki-structure.md) | Read 2026-11-12; live writing authority | Slim wiki structure, stable IDs, evidence retention, decisions and state. wiki-nest incubates wikis for workspaces without a home; no migration planned here |
 
-**Open (review M6, 2026-11-12):** Workstation records lg-workstreams as a read-only reference whose `main` is `1927adfe32324dfac4166cfab20bceeffb446f2a` (WS-REC-LG-WORKSTREAMS-FREEZE), and cites Workflow Factory under `Plan/bin/workflow-factory` at that commit. The rows above read `c1c9ef09c56cbbda2ed2ca381561c082dd27a49e` and `Build/bin/workflow-factory`. Which commit is on `main`, and what changed between them, is not yet confirmed.
+**Settled (review M6, 2026-11-13):** lg-workstreams' `main` is `c1c9ef09c56cbbda2ed2ca381561c082dd27a49e`, one commit after `1927adfe32324dfac4166cfab20bceeffb446f2a`, the read-only pin Workstation records (WS-REC-LG-WORKSTREAMS-FREEZE, now with a note). That commit changes only operational documents outside the planning and build areas; `Plan/bin/workflow-factory` and `Build/bin/workflow-factory` are identical in both, so the rows above read the same content at either commit. Workstation cites the `Plan/` copy and this page the `Build/` one; they are separate folders, both unchanged.
 
 Pinned links identify what this session read. They do not freeze future knowledge: a later change re-reads the current owning contract and records its new revision before updating the consolidation.
 

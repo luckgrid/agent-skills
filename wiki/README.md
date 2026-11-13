@@ -1,4 +1,4 @@
-# agent-skills wiki
+# agents wiki
 
 Start with the repository's root `README.md`: it is the entry point and holds the rules. This wiki holds the details: how the repository works and why, where it stands, what comes next, and the records behind it.
 

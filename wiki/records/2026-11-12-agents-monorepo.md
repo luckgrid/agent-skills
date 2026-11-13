@@ -5,7 +5,7 @@ title: Agents monorepo research and direction
 summary: "The owner's request, research sources and dispositions behind expanding agent-skills, with Workstation's newer profile direction taking precedence over historical WfOS mechanisms."
 status: active
 created: 2026-11-12
-updated: 2026-11-12
+updated: 2026-11-13  # merged and renamed
 related: [AS-ADR-0001, AS-ARCH-AGENTS-WORKSPACE, AS-RES-AGENTS-LINEAGE, AS-PROGRAM, AS-STATE, WS-REC-2026-11-12-AGENTS-MONOREPO]
 ---
 
@@ -108,3 +108,7 @@ The session then suggested `luckgrid/agents` as the name, and a rule for the ove
 > lets go with luckgrid/agents for the name and also with you about overlay rules to replace defaults in sandbox
 
 The session read "with you about overlay rules" as agreeing to that rule, and recorded it as AS-ADR-0001 decision 6; ordinary keys in the overlay replace the default.
+
+## Merged and renamed (2026-11-13)
+
+> **Note (2026-11-13):** this PR merged as `b644bb50cc34f3b636625ca3abef35cdd6714bb3`, and Workstation's as `62b65b7a8370ce2f8e199dbaf5e4dda7546e6242`; both had `main` merged into them first, with the changes above intact. The owner then renamed the repository `luckgrid/agents`; GitHub redirects the old links, so the links above are kept as written. Review finding M6 is settled in the [lineage](../resources/agents-knowledge-lineage.md).
