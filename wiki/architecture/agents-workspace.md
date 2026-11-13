@@ -5,7 +5,7 @@ title: Agents workspace and configuration boundaries
 summary: "The proposed agents monorepo: skills at the root as today, public harness defaults under configs/, a private overlay in Groundwork's agent-config repository with the stricter value winning for sandbox settings, Rust from AG1, and proof gates AG1 to AG3."
 status: proposed
 created: 2026-11-12
-updated: 2026-11-12  # after the independent review and the owner's choices: skills stay at the root; the package map trimmed to skills, configs, crates and wiki; defaults and overlay with the stricter-wins rule; proof steps AG1 to AG3
+updated: 2026-11-13  # the rename done; before that, after the independent review and the owner's choices: skills stay at the root; the package map trimmed to skills, configs, crates and wiki; defaults and overlay with the stricter-wins rule; proof steps AG1 to AG3
 derived_from: AS-ADR-0001
 related: [AS-ADR-0001, AS-RES-AGENTS-LINEAGE, AS-PROGRAM, AS-ARCH-GUEST-INSTALL, WS-ADR-0004, WS-ARCH-CONTRACTS, GW-ADR-0011, GW-ADR-0016]
 ---
@@ -67,7 +67,7 @@ Rust starts at AG1 with a concrete job: replacing `check.sh`. Cargo owns Rust bu
 ## Steps and proof gates
 
 1. **This documentation.** The decision, this design and the lineage, with Workstation's matching note.
-2. **Rename** to `luckgrid/agents`, by the owner, after this PR merges. A Workstation PR then updates GW-ADR-0014 decision 1, `workbench-tools.toml`'s pin, U16's clone path and the links.
+2. **Rename** to `luckgrid/agents`: done by the owner on 2026-11-13, after this design's PR merged. Workstation's PR updates `wb sync`, U16's clone path (`~/Workspaces/agents`), GW-ADR-0014 decision 1 and its current pages. U16's export folder and the `agent_skills_commit` lock key keep their names, because `~/.local/share/lg-workbench/agents` already holds the guest harnesses' npm packages.
 3. **M7 and M0 to M2**, as the [roadmap](../program.md) sets them. M0 is unchanged by this design.
 4. **AG1, after M2: the Rust validator.** It makes the same checks as M0's `check.sh`, which it replaces, with the same output for the same tree. Moon and its pins arrive with an admission note extending GW-ADR-0016 to this repository.
 5. **AG2: one shared default, two harnesses.** User-level instructions for Claude Code and Codex in `configs/claude-code/` and `configs/codex/`, each in the file its harness documents for user-level instructions (confirmed from each harness's documentation at the installed version, not assumed). Proved in the guest: both harnesses load the text, the diff and source commit are shown, and a user edit isn't overwritten. No settings or policy keys yet.

@@ -5,7 +5,7 @@ title: Expand agent-skills into an agents monorepo
 summary: "The owner's decisions (2026-11-12): expand this repository into an agents monorepo, renamed luckgrid/agents; skills become a package; Workstation's wiki is the latest knowledge source; public config defaults here with a private overlay in Groundwork's agent-config repository, the stricter value winning for sandbox settings; Rust after M2, starting with the validator; Claude Code and Codex for the first shared-config proof. The session's own proposals are kept apart."
 status: accepted
 created: 2026-11-12
-updated: 2026-11-12  # after the independent review: owner's decisions separated from the session's proposals; the owner's choices on configuration, overlay rule, Rust timing, proof harnesses and the name; moved from records/ to records/decisions/
+updated: 2026-11-13  # note: the rename done; before that, after the independent review: owner's decisions separated from the session's proposals; the owner's choices on configuration, overlay rule, Rust timing, proof harnesses and the name; moved from records/ to records/decisions/
 related: [AS-REC-2026-11-12-AGENTS-MONOREPO, AS-ARCH-AGENTS-WORKSPACE, AS-RES-AGENTS-LINEAGE, AS-PROGRAM, WS-ADR-0004, GW-ADR-0011, GW-ADR-0014]
 ---
 
@@ -41,6 +41,8 @@ The complete messages, the options offered and the research are in the [session 
 7. **Rust after M2, validator first** (chosen: "After M2, validator first (Recommended)"). `scripts/check.sh` stays Python through M0 to M2, so Workbench's F1 isn't delayed; then the first Rust crate replaces it, and Moon's guest admission is extended to this repository.
 8. **Claude Code and Codex for the first shared-config proof** (chosen: "Claude Code + Codex (Recommended)").
 9. **Rename to `luckgrid/agents`** (chosen: "Rename now"; the name in the owner's words above). The owner renames the repository after this decision's PR merges; Workstation's references follow in a separate PR. Wiki IDs keep the `AS-` prefix, since an ID never changes.
+
+   > **Note (2026-11-13):** this decision's PR merged as `b644bb5`, and the owner renamed the repository the same day. Workstation's references follow in its own PR.
 
 The earlier owner decisions on custom skill modules (the modules, own words, credits, removing the linked skills in M0, and the private `site-system` skill in its own repository) are unchanged ([module roadmap](../../program.md)).
 

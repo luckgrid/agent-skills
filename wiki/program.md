@@ -5,7 +5,7 @@ title: Roadmap
 summary: "The refactor to fully custom skill modules (owner, 2026-11-12): M0 removes the linked upstream skills and sets the module layout; then workbench, council, multiplex, wiki, grill, design-system, a site-system project skill in that repository, frugal and triage, each written in Luckgrid's own words from a reference list of reviewed skills. The earlier items P1 to P3 are folded into the modules."
 status: active
 created: 2026-11-12
-updated: 2026-11-12  # agents monorepo: the owner's decisions after the independent review, items AG1 to AG3 after M2, M0 unchanged; before that, third round (owner): the open questions answered, the order, triage; before that, second round (owner): council, multiplex, design-system and site-system; before that, the custom-modules refactor (owner, 2026-11-12); before that, P1 to P3 from the wiki's first version
+updated: 2026-11-13  # the rename done; before that, agents monorepo: the owner's decisions after the independent review, items AG1 to AG3 after M2, M0 unchanged; before that, third round (owner): the open questions answered, the order, triage; before that, second round (owner): council, multiplex, design-system and site-system; before that, the custom-modules refactor (owner, 2026-11-12); before that, P1 to P3 from the wiki's first version
 related: [AS-ADR-0001, AS-ARCH-AGENTS-WORKSPACE, AS-STATE, AS-RES-SKILL-REFERENCES, AS-REC-2026-11-12-SKILL-MODULES, GW-ADR-0014, GW-ARCH-WORKBENCH-AGENT-WORKFLOWS, AS-ARCH-SKILL-SOURCES, AS-ARCH-GUEST-INSTALL]
 ---
 
@@ -19,7 +19,7 @@ The owner's decisions are in [AS-ADR-0001](records/decisions/0001-agents-monorep
 
 The agents items come after the modules they would otherwise delay:
 
-- **Rename:** after AS-ADR-0001's PR merges, the owner renames the repository; a Workstation PR updates its references ([step 2](architecture/agents-workspace.md#steps-and-proof-gates)).
+- **Rename:** done 2026-11-13 by the owner; Workstation's references follow in its own PR ([step 2](architecture/agents-workspace.md#steps-and-proof-gates)).
 - **AG1, after M2:** a Rust validator replaces `check.sh`, with Moon and its pins and the admission note that extends GW-ADR-0016 here. It can run alongside M3 to M9.
 - **AG2, after AG1:** shared user-level instructions for Claude Code and Codex, proved in the guest.
 - **AG3, after AG2:** settings and a sandbox baseline with the agent-config overlay, the stricter value winning for policy keys; needs GW-ADR-0011's stage C amendment and gate A2 in Workstation.
