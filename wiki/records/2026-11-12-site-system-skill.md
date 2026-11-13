@@ -34,4 +34,4 @@ The roadmap's [M7](../program.md#m7-site-system-a-project-skill-in-site-system) 
 
 ## Next
 
-Done the same evening, owner-reported: `wb check` passed on the pinned toolchain, and a fresh Claude Code pane and a fresh Codex pane in the guest both list `site-system`, so Claude Code follows the linked skill folder. The independent review followed (see Checks). Next: a recheck of its fixes, then the merge on the owner's word.
+Done the same evening, owner-reported: `wb check` passed on the pinned toolchain, and a fresh Claude Code pane and a fresh Codex pane in the guest both list `site-system`, so Claude Code follows the linked skill folder. The independent review followed (see Checks), and a recheck of its fixes on 2026-11-13. Next: the merge on the owner's word.
