@@ -1,5 +1,7 @@
 # agent-skills
 
+**Direction (owner, 2026-11-12):** this repository becomes an agents monorepo for reusable configurations, skills and tools, and is to be renamed `luckgrid/agents`. Skills stay a package at `skills/`. The [decision](wiki/records/decisions/0001-agents-monorepo.md), [proposed workspace](wiki/architecture/agents-workspace.md) and [knowledge lineage](wiki/resources/agents-knowledge-lineage.md) record it. Workstation's wiki is the latest source for shared configuration principles and component boundaries; older WfOS/Workstreams material supplies lineage. The paths and installation instructions below still describe the repository as it is today.
+
 Agent Skills shared by the Workbench guest's harnesses (Claude Code, Codex and Cursor). Each skill is a folder `skills/<name>/` with a `SKILL.md` in the Agent Skills format: YAML front matter with `name` and `description`, then the instructions.
 
 Skills for this owner's own workflows and methods are written here. Public skills are linked from their authors, at a reviewed commit, only when they are safe and their content has been checked.

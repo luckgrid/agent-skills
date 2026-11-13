@@ -5,13 +5,24 @@ title: Roadmap
 summary: "The refactor to fully custom skill modules (owner, 2026-11-12): M0 removes the linked upstream skills and sets the module layout; then workbench, council, multiplex, wiki, grill, design-system, a site-system project skill in that repository, frugal and triage, each written in Luckgrid's own words from a reference list of reviewed skills. The earlier items P1 to P3 are folded into the modules."
 status: active
 created: 2026-11-12
-updated: 2026-11-12  # third round (owner): the open questions answered, the order, triage; before that, second round (owner): council, multiplex, design-system and site-system; before that, the custom-modules refactor (owner, 2026-11-12); before that, P1 to P3 from the wiki's first version
-related: [AS-STATE, AS-RES-SKILL-REFERENCES, AS-REC-2026-11-12-SKILL-MODULES, GW-ADR-0014, GW-ARCH-WORKBENCH-AGENT-WORKFLOWS, AS-ARCH-SKILL-SOURCES, AS-ARCH-GUEST-INSTALL]
+updated: 2026-11-12  # agents monorepo: the owner's decisions after the independent review, items AG1 to AG3 after M2, M0 unchanged; before that, third round (owner): the open questions answered, the order, triage; before that, second round (owner): council, multiplex, design-system and site-system; before that, the custom-modules refactor (owner, 2026-11-12); before that, P1 to P3 from the wiki's first version
+related: [AS-ADR-0001, AS-ARCH-AGENTS-WORKSPACE, AS-STATE, AS-RES-SKILL-REFERENCES, AS-REC-2026-11-12-SKILL-MODULES, GW-ADR-0014, GW-ARCH-WORKBENCH-AGENT-WORKFLOWS, AS-ARCH-SKILL-SOURCES, AS-ARCH-GUEST-INSTALL]
 ---
 
 # Roadmap
 
 Where things stand is in [STATE](records/STATE.md); this page doesn't restate it. Nothing here reaches the guest until Workbench's step F1 pins a commit of this repository ([guest install](architecture/guest-install.md)). The research and the owner's choices behind this plan are in the [skill modules record](records/2026-11-12-skill-modules.md); the skills each module learns from are listed in [skill references](resources/skill-references.md).
+
+## Agents monorepo (owner, 2026-11-12)
+
+The owner's decisions are in [AS-ADR-0001](records/decisions/0001-agents-monorepo.md): an agents monorepo renamed `luckgrid/agents`, skills as a package, public config defaults here with a private overlay, Rust after M2, and Claude Code and Codex for the first shared-config proof. The proposed layout and proof gates are in the [workspace design](architecture/agents-workspace.md); the [knowledge lineage](resources/agents-knowledge-lineage.md) records the older sources. None of it changes the module IDs, the order below or M0: skills stay at `skills/`.
+
+The agents items come after the modules they would otherwise delay:
+
+- **Rename:** after AS-ADR-0001's PR merges, the owner renames the repository; a Workstation PR updates its references ([step 2](architecture/agents-workspace.md#steps-and-proof-gates)).
+- **AG1, after M2:** a Rust validator replaces `check.sh`, with Moon and its pins and the admission note that extends GW-ADR-0016 here. It can run alongside M3 to M9.
+- **AG2, after AG1:** shared user-level instructions for Claude Code and Codex, proved in the guest.
+- **AG3, after AG2:** settings and a sandbox baseline with the agent-config overlay, the stricter value winning for policy keys; needs GW-ADR-0011's stage C amendment and gate A2 in Workstation.
 
 ## The direction (owner, 2026-11-12)
 
@@ -46,7 +57,7 @@ Module numbers are IDs and don't change; the build order is:
 
 1. **M7 `site-system`**, now. It is a project skill in the site-system repository, so agents there get it once it merges, without waiting for Workbench's install step, and it helps the site prototypes due this month. Until M6 exists, it carries `design-system`'s rules for consuming a release.
 2. **M0**, the module foundation.
-3. **M1 `workbench`**, then **M2 `council`**: what Workbench's F1 needs.
+3. **M1 `workbench`**, then **M2 `council`**: what Workbench's F1 needs. **AG1** follows M2 and can run alongside what comes next ([agents items](#agents-monorepo-owner-2026-11-12)).
 4. **M3 `multiplex`**, **M4 `wiki`**, **M5 `grill`**.
 5. **M6 `design-system`**; M7 then points to it instead of carrying its rules.
 6. **M8 `frugal`**, **M9 `triage`**.
